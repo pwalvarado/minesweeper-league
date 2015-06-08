@@ -6,12 +6,12 @@
 ## Minimum Viable Product
 Minesweeper League is a website devoted to minesweeper. Users can:
 
-* [] Create accounts that do not require email verification.
-* [] Create sessions (log in).
-* [] Play as guest if they do not have or want an account.
-* [] Play the original (single player) minesweeper.
-* [] Play a 1v1 competitive variant of minesweeper.
-* [] View the leaderboards for a given difficulty and variant.
+- [] Create accounts that do not require email verification.
+- [] Create sessions (log in).
+- [] Play as guest if they do not have or want an account.
+- [] Play the original (single player) minesweeper.
+- [] Play a 1v1 competitive variant of minesweeper.
+- [] View the leaderboards for a given difficulty and variant.
 
 ## Design Docs
 * View Wireframes
@@ -81,17 +81,17 @@ Suggestions appreciated. For now, I will guess that it is easier on everything
 server just pass along JSON to the other client.
 
 ## Bonus Features:
-* [] Open matchmaking,like [lichess][lichess].
-* [] Profile page with personal best times for single player mode.
-* [] A dynamic competitive Minesweeper (CM): the better you do, the harder it
+- [] Open matchmaking,like [lichess][lichess].
+- [] Profile page with personal best times for single player mode.
+- [] A dynamic competitive Minesweeper (CM): the better you do, the harder it
 gets for your opponent.
-* [] A messaging/inbox system for private correspondence between users.
-* [] A chat section in the competitive variant.
-* [] A rematch button in the competitive variant.
-* [] Opt-In email verification (like [lichess][lichess]).
-* [] CM vs AI (non-trivial for dynamic boards).
-* [] ELO ranking system for CM.
-* [] Customizability options for all variants.
-* [] Never-ending board variant.
-* [] Never Guess variant (you can't lose if you play perfectly).
-* [] Game history for all variants.
+- [] A messaging/inbox system for private correspondence between users.
+- [] A chat section in the competitive variant.
+- [] A rematch button in the competitive variant.
+- [] Opt-In email verification (like [lichess][lichess]).
+- [] CM vs AI (non-trivial for dynamic boards).
+- [] ELO ranking system for CM.
+- [] Customizability options for all variants.
+- [] Never-ending board variant.
+- [] Never Guess variant (you can't lose if you play perfectly).
+- [] Game history for all variants.
