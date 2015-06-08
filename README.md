@@ -14,21 +14,21 @@ Minesweeper League is a website devoted to minesweeper. Users can:
 - [ ] View the leaderboards for a given difficulty and variant.
 
 ## Design Docs
-* View Wireframes
-* DB schema
+* [View Wireframes](https://github.com/aegatlin/minesweeper-league/tree/master/docs/views.md)
+* [DB schema](https://github.com/aegatlin/minesweeper-league/tree/master/docs/schema.md)
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Original Minesweeper (~2 days)
+### Phase 1: User Authentication, 1 Player Minesweeper (~2 days)
 I will set up user authentication via Rails and build single player,
 client-side, JS minesweeper. I will either use canvas, or HTML elements, but I
 don't know which is more efficient. The most important thing at the end of P1
 is a working minesweeper game pushed to Heroku where users can optionally log
 in to play.
 
-[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phase1.md)
+[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phases/phase1.md)
 
-### Phase 2: Original Minesweeper Leaderboard (~1 day)
+### Phase 2: 1 Player Minesweeper Leaderboard (~1 day)
 I will set up a leaderboard. It will be backbone.js linked in the nav bar
 and show a pop up with a scrollable list of the "Top N Best Times".
 Users and guests can type in any name they want if they qualify. Logged in
@@ -37,7 +37,7 @@ a listener for a finished game that queries the database to find if the time
 qualifies, and if so where in the list to place it. I will then delete to
 previous least time if it exceeds the list.
 
-[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phase2.md)
+[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phases/phase2.md)
 
 ### Phase 3: Static Competitive Minesweeper (~3 days)
 Though this is not my final hope for a competitive minesweeper variant, I will
@@ -48,12 +48,12 @@ I will have client-side backbone.js event listeners attached to web socket
 message transmissions, updating the DOM for each client. At the moment I know
 next to nothing about web sockets, or whether or not there's a better approach.
 I've looked into some web socket gems ([pusher](https://pusher.com/),
-[socky][https://github.com/socky/socky-server-ruby],
+[socky](https://github.com/socky/socky-server-ruby),
 [EM-WebSocket](https://github.com/igrigorik/em-websocket) and
 [websocket-rails](https://github.com/websocket-rails/websocket-rails)) but I'd
 greatly appreciate advice here on how best to move forward.
 
-[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phase3.md)
+[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phases/phase3.md)
 
 ### Phase 4: Two Player Invitation System (~3 days)
 I will set up an invitation system inspired by the "Play with a friend"
@@ -67,7 +67,7 @@ Api::2PGamesController.
 * redirect the current user to the url.
 * Remove the url in a garbage collection step when the game is over.
 
-[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phase4.md)
+[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phases/phase4.md)
 
 ### Comments on Phase 3 and 4
 I do not know if it is better to have the 2PGame stored on the server, or keep
@@ -95,3 +95,4 @@ gets for your opponent.
 - [ ] Never-ending board variant.
 - [ ] Never Guess variant (you can't lose if you play perfectly).
 - [ ] Game history for all variants.
+- [ ] Friends. Follow, Unfollow.
