@@ -26,7 +26,7 @@ don't know which is more efficient. The most important thing at the end of P1
 is a working minesweeper game pushed to Heroku where users can optionally log
 in to play.
 
-[Details](aegatlin/minesweeper-league/tree/master/docs/phase1.md)
+[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phase1.md)
 
 ### Phase 2: Original Minesweeper Leaderboard (~1 day)
 I will set up a leaderboard. It will be backbone.js linked in the nav bar
@@ -37,7 +37,7 @@ a listener for a finished game that queries the database to find if the time
 qualifies, and if so where in the list to place it. I will then delete to
 previous least time if it exceeds the list.
 
-[Details](aegatlin/minesweeper-league/tree/master/docs/phase2.md)
+[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phase2.md)
 
 ### Phase 3: Static Competitive Minesweeper (~3 days)
 Though this is not my final hope for a competitive minesweeper variant, I will
@@ -53,7 +53,7 @@ I've looked into some web socket gems ([pusher](https://pusher.com/),
 [websocket-rails](https://github.com/websocket-rails/websocket-rails)) but I'd
 greatly appreciate advice here on how best to move forward.
 
-[Details](aegatlin/minesweeper-league/tree/master/docs/phase3.md)
+[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phase3.md)
 
 ### Phase 4: Two Player Invitation System (~3 days)
 I will set up an invitation system inspired by the "Play with a friend"
@@ -67,7 +67,7 @@ Api::2PGamesController.
 * redirect the current user to the url.
 * Remove the url in a garbage collection step when the game is over.
 
-[Details](aegatlin/minesweeper-league/tree/master/docs/phase4.md)
+[Details](https://github.com/aegatlin/minesweeper-league/tree/master/docs/phase4.md)
 
 ### Comments on Phase 3 and 4
 I do not know if it is better to have the 2PGame stored on the server, or keep
