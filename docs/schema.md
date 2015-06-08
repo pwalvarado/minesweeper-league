@@ -3,7 +3,7 @@
 ## users
 
 | column name | data type | details |
--------------------------------------
+|-------------|-----------|---------|
 | id          | integer   | not null, primary key |
 | username    | string    | not null, unique |
 | password_digest | string | not null |
@@ -13,8 +13,8 @@
 ## leaderboard
 
 | column name | data type | details |
--------------------------------------
+|-------------|-----------|---------|
 | ranking     | integer | not null |
-| user_id     | integer | foreign key (references users)|
+| user_id     | integer | foreign key (references users) |
 | time        | integer | not null |
 | name        | string  | not null |
