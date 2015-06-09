@@ -8,6 +8,20 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+  <h1>Welcome to Minesweeper League</h1>
+  <h2>It may or may not sweep you off your feet</h2>
+</nav>
+
+<% if current_user %>
+  <%= current_user.username %>
+  <%= button_to "Log Out", session_url, method: :delete %>
+<% else %>
+  <%= button_to "Log In", new_session_url, method: :get %>
+<% end %>
+
+<%= flash[:errors].join('<br>').html_safe if flash[:errors] %>
+
 <%= yield %>
 
 </body>
