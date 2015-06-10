@@ -1,5 +1,9 @@
 MinesweeperLeague.Views.Cell = Backbone.View.extend({
 
+  initialize: function () {
+    this.listenTo(this.model, 'change:revealed', this.render);
+  },
+
   className: "cell",
 
   render: function () {
