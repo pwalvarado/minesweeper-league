@@ -1,21 +1,25 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.board {
-  width: 500px;
-  height: 318px;
-}
-
 .cell {
    float: left;
    width: 16px;
    height: 16px;
-   border-style: inset;
-   color: grey;
+   border-style: outset;
+   background-color: lightgrey;
+   border-width: 2px;
 }
 
+// Uses a forced 16px*(num of cells in row) to get new cell line
 .cells {
-  max-width: 500px;
-  border-style: solid;
-  border-color: black;
+  width: 320px;
+}
+
+.revealed {
+  border-style: inset;
+  background-color: lightgrey;
+}
+
+.mined {
+  background-color: orangered;
 }
