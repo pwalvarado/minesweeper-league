@@ -9,7 +9,10 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
   },
 
   home: function () {
-    var boardView = new MinesweeperLeague.Views.Board();
+    var cells = new MinesweeperLeague.Collections.Cells();
+    var boardView = new MinesweeperLeague.Views.Board({
+      collection: cells
+    });
 
     this._swapView(boardView);
   },
