@@ -12,7 +12,9 @@ MinesweeperLeague.Views.Board = Backbone.CompositeView.extend({
       that.addSubview('.cells', cellView);
     });
 
-    this.listenTo(this.collection, 'change:revealed', this.test);
+    this.listenTo(this.collection, 'change:revealed', function (model) {
+      console.log(model);
+    });
   },
 
   test: function () {
