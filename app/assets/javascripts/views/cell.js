@@ -32,9 +32,7 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
   },
 
   reveal: function () {
-    this.model.set({ revealed: true });
-
-    this.render();
-  }
+    this.model.reveal();
+  },
 
 });

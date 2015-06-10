@@ -39,12 +39,20 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
       if (neighbor.get('mined')) { number += 1; }
     });
 
+    if (number === 0) { this.revealSurroundings(neighbors); }
+
     return number;
   },
 
-  // if this function gets called, the cell value must be 0
-  revealSurroundings: function () {
+  reveal: function () {
+    this.set({ revealed: true });
+  },
 
+  // if this function gets called, the cell value must be 0
+  revealSurroundings: function (neighbors) {
+    neighbors.forEach(function (neighbor) {
+      neighbor.reveal();
+    });
   },
 
   _seedMine: function (fraction) {

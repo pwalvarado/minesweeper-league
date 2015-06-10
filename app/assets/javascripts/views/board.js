@@ -13,12 +13,7 @@ MinesweeperLeague.Views.Board = Backbone.CompositeView.extend({
     });
   },
 
-  test: function () {
-    console.log('hi mom');
-  },
-
   render: function () {
-    console.log('hi mom');
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
