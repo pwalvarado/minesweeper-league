@@ -1,7 +1,10 @@
 MinesweeperLeague.Models.Cell = Backbone.Model.extend({
 
   initialize: function () {
-    this.mined = this._seedMine(0.2);
+    this.set({
+      mined: this._seedMine(0.2),
+      revealed: false
+    });
   },
 
   getNeighborsArray: function () {
@@ -33,7 +36,7 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
     var neighbors = this.getNeighborsArray();
 
     neighbors.forEach(function (neighbor) {
-      if (neighbor.mined) { number += 1; }
+      if (neighbor.get('mined')) { number += 1; }
     });
 
     return number;

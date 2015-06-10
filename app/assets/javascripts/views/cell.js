@@ -20,10 +20,10 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
   },
 
   reveal: function () {
-    this.model.revealed = true;
+    this.model.set({ revealed: true });
     this.$el.addClass('revealed');
 
-    if (this.model.mined) {
+    if (this.model.get('mined')) {
       this.$el.addClass('mined');
     } else {
       var num = this.model.getNumber();
