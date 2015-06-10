@@ -10,7 +10,7 @@ MinesweeperLeague.Views.Board = Backbone.CompositeView.extend({
 
     for (var i = 0; i < 20; i++) {
       for (var j = 0; j < 20; j++) {
-        var cell = new MinesweeperLeague.Models.Cell({ pos: [i, j] });
+        var cell = new MinesweeperLeague.Models.Cell({ x: i, y: j });
         cells.add(cell);
 
         var cellView = new MinesweeperLeague.Views.Cell({ model: cell });

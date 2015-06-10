@@ -7,7 +7,8 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
   render: function () {
     this.$el
       .html(this.template({ cell: this.model }))
-      .attr('pos', this.model.get('pos'));
+      .attr('x', this.model.get('x'))
+      .attr('y', this.model.get('y'));
 
     return this;
   },
@@ -18,13 +19,17 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
     'click': 'reveal'
   },
 
-  reveal: function (event) {
+  reveal: function () {
     this.model.revealed = true;
     this.$el.addClass('revealed');
+
     if (this.model.mined) {
       this.$el.addClass('mined');
+    } else {
+      var num = this.model.getNumber();
+      // if (num === 0) { this.model.revealSurroundings(); }
+      this.$el.text(num);
     }
-    console.log(this.model.collection);
   },
 
 });
