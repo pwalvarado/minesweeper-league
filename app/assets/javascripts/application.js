@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require underscore
+//= require backbone
+//= require minesweeper_league
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./utils
+//= require_tree ./views
+//= require_tree ./routers
 //= require_tree .
+//= require bootstrap
