@@ -1,11 +1,21 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.board {
+  width: 500px;
+  height: 318px;
+}
+
 .cell {
-  color: blue;
-  float: left;
+   float: left;
+   width: 16px;
+   height: 16px;
+   border-style: inset;
+   color: grey;
 }
 
 .cells {
   max-width: 500px;
+  border-style: solid;
+  border-color: black;
 }

@@ -1,11 +1,13 @@
 MinesweeperLeague.Views.Cell = Backbone.View.extend({
 
   attributes: {
-    "class": "cell"
+    "class": "cell",
   },
 
   render: function () {
-    this.$el.html(this.template({ cell: this.model }));
+    this.$el
+      .html(this.template({ cell: this.model }))
+      .attr('pos', this.model.get('pos'));
 
     return this;
   },

@@ -1,5 +1,9 @@
 MinesweeperLeague.Views.Board = Backbone.CompositeView.extend({
 
+  attributes: {
+    "class": "board"
+  },
+
   initialize: function () {
     var that = this;
 
