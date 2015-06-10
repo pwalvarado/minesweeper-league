@@ -1,9 +1,5 @@
 MinesweeperLeague.Views.Cell = Backbone.View.extend({
 
-  initialize: function () {
-    this.mined = this._seedMine(0.2);
-  },
-
   attributes: {
     "class": "cell",
   },
@@ -16,22 +12,19 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
     return this;
   },
 
-  template: JST['cells/cell'],
+  template: JST['cell'],
 
   events: {
     'click': 'reveal'
   },
 
   reveal: function (event) {
-    this.revealed = true;
+    this.model.revealed = true;
     this.$el.addClass('revealed');
-    if (this.mined) {
+    if (this.model.mined) {
       this.$el.addClass('mined');
     }
-  },
-
-  _seedMine: function (fraction) {
-    return Math.random() <= fraction ? true : false;
+    console.log(this.model.collection);
   },
 
 });
