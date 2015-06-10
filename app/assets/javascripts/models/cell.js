@@ -21,7 +21,7 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
           y: neighborY
         });
 
-        neighbors.push(neighbor);
+        if (neighbor) { neighbors.push(neighbor); }
       }
     }
 
