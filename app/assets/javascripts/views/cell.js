@@ -32,6 +32,10 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
   },
 
   reveal: function () {
+    if (this.model.get('mined') && !this.model.collection.ended) {
+      this.model.collection.endGame();
+    }
+
     this.model.reveal();
   },
 

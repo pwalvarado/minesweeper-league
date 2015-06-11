@@ -1,6 +1,20 @@
 MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
 
-  model: MinesweeperLeague.Models.Cell
+  initialize: function () {
+    this.ended = false;
+  },
+
+  model: MinesweeperLeague.Models.Cell,
+
+  endGame: function () {
+    this.ended = true;
+
+    this.each(function (cell) {
+      if (cell.get('mined')) {
+        cell.reveal();
+      }
+    });
+  },
 
 });
 
