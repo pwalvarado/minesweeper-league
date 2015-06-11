@@ -1,5 +1,7 @@
 MinesweeperLeague.Collections.Leaders = Backbone.Collection.extend({
 
-  model: MinesweeperLeague.Models.Leaders,
+  url: '/api/leaders',
+
+  model: MinesweeperLeague.Models.Leader,
 
 });

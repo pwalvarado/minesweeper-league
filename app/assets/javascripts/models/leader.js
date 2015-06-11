@@ -1,5 +1,4 @@
-MinesweeperLeague.Models.Leader = Backbone.Leader.extend({
+MinesweeperLeague.Models.Leader = Backbone.Model.extend({
 
-    
 
 });

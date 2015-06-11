@@ -19,13 +19,12 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
     this._swapBoardView(boardView);
 
     var leaders = new MinesweeperLeague.Collections.Leaders();
+    leaders.fetch();
     var leaderboardView = new MinesweeperLeague.Views.Leaderboard({
       collection: leaders
     });
 
     this._swapLeaderboardView(leaderboardView);
-
-    this._swapMainView();
   },
 
   _swapLeaderboardView: function (view) {

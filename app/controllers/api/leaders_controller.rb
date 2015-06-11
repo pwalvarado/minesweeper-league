@@ -2,7 +2,7 @@ module Api
   class LeadersController < ApiController
 
     def index
-      @leaders = Leaders.all
+      @leaders = Leader.all
 
       render json: @leaders
     end
