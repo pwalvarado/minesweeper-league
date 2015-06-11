@@ -14,7 +14,8 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
         this.$el.addClass('mined');
         this.$el.text('M');
       } else {
-        this.$el.text(this.model.getNumber());
+        var num = this.model.getNumber();
+        if (num != 0) { this.$el.text(num); }
       }
     }
 
