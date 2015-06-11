@@ -3,7 +3,8 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
   initialize: function () {
     this.set({
       mined: this._seedMine(0.2),
-      revealed: false
+      revealed: false,
+      flagged: false
     });
   },
 

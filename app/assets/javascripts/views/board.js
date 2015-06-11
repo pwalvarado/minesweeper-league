@@ -3,7 +3,10 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
   initialize: function () {
     this.populateOrResetSubviewGrid();
 
-    this.listenTo(this.collection, 'change:revealed', function (model) {
+    this.listenTo(
+      this.collection,
+      'change:revealed change:flagged',
+      function (model) {
       if (this.collection.allMinesRevealed) {
         this.stopListening();
         return;
@@ -51,7 +54,10 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
     this.removeSubviews();
     this.populateOrResetSubviewGrid();
     $('#main').html(this.render().$el);
-    this.listenTo(this.collection, 'change:revealed', function (model) {
+    this.listenTo(
+      this.collection,
+      'change:revealed change:flagged',
+      function (model) {
       if (this.collection.allMinesRevealed) {
         this.stopListening();
         return;
