@@ -8,6 +8,28 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
     });
   },
 
+  sweep: function () {
+    // debugger;
+    var neighbors = this.getNeighborsArray();
+    var number = this.getNumber();
+    var checkSum = 0;
+
+    neighbors.forEach(function (neighbor) {
+      if (neighbor.get('flagged')) {
+        checkSum += 1;
+      }
+    });
+
+    if (number <= checkSum) {
+      neighbors.forEach(function (neighbor) {
+        if (!neighbor.get('flagged')) {
+          neighbor.reveal();
+          if (neighbor.get('mined')) { this.collection.endGame(); }
+        }
+      }.bind(this));
+    }
+  },
+
   getNeighborsArray: function () {
     var neighbors = [];
 

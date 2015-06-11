@@ -2,11 +2,17 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
 
   initialize: function () {
     this.populateOrResetSubviewGrid();
+    this.activateListeners();
+  },
 
-    this.listenTo(
-      this.collection,
-      'change:revealed change:flagged',
-      function (model) {
+  className: "board",
+
+  events: {
+    'click .reset': 'reset'
+  },
+
+  activateListeners: function () {
+    this.listenTo(this.collection, 'change:revealed', function (model) {
       if (this.collection.allMinesRevealed) {
         this.stopListening();
         return;
@@ -14,12 +20,10 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
 
       this.subviewGrid[model.get('x')][model.get('y')].render();
     });
-  },
 
-  className: "board",
-
-  events: {
-    'click .reset': 'reset'
+    this.listenTo(this.collection, 'change:flagged', function (model) {
+      this.subviewGrid[model.get('x')][model.get('y')].render();
+    });
   },
 
 
@@ -54,17 +58,7 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
     this.removeSubviews();
     this.populateOrResetSubviewGrid();
     $('.board').html(this.render().$el);
-    this.listenTo(
-      this.collection,
-      'change:revealed change:flagged',
-      function (model) {
-      if (this.collection.allMinesRevealed) {
-        this.stopListening();
-        return;
-      }
-
-      this.subviewGrid[model.get('x')][model.get('y')].render();
-    });
+    this.activateListeners();
   },
 
   populateOrResetSubviewGrid: function () {

@@ -8,6 +8,12 @@
    border-style: outset;
    background-color: lightgrey;
    border-width: 2px;
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
 }
 
 // Uses a forced 16px*(num of cells in row) to get new cell line
