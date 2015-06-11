@@ -45,6 +45,9 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
     this.removeSubviews();
     this.populateOrResetSubviewGrid();
     $('#main').html(this.render().$el);
+    this.listenTo(this.collection, 'change:revealed', function (model) {
+      this.subviewGrid[model.get('x')][model.get('y')].render();
+    });
   },
 
   populateOrResetSubviewGrid: function () {
