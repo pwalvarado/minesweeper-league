@@ -39,10 +39,12 @@
     </div><!-- /.container-fluid -->
   </nav>
 
+  <div class="container">
+    <%= flash[:errors].join('<br>').html_safe if flash[:errors] %>
 
-<%= flash[:errors].join('<br>').html_safe if flash[:errors] %>
+    <%= yield %>
+  </div>
 
-<%= yield %>
 
 </body>
 </html>

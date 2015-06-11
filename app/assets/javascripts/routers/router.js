@@ -9,7 +9,9 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
   },
 
   home: function () {
-    var cells = new MinesweeperLeague.Collections.Cells();
+    var cells = new MinesweeperLeague.Collections.Cells(
+      MinesweeperLeague.generateCells()
+    );
     var boardView = new MinesweeperLeague.Views.Board({
       collection: cells
     });
