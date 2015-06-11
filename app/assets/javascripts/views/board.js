@@ -53,7 +53,7 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
     this.collection.allMinesRevealed = false;
     this.removeSubviews();
     this.populateOrResetSubviewGrid();
-    $('#main').html(this.render().$el);
+    $('.board').html(this.render().$el);
     this.listenTo(
       this.collection,
       'change:revealed change:flagged',
