@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% leaders.each(function (leader) { %>
+      <tr>
+        <th scope="row">1</th>
+        <td><%= leader.get('name') %></td>
+        <td><%= leader.get('time') %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

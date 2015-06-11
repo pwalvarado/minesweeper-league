@@ -16,13 +16,28 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
       collection: cells
     });
 
-    this._swapView(boardView);
+    this._swapBoardView(boardView);
+
+    var leaders = new MinesweeperLeague.Collections.Leaders();
+    var leaderboardView = new MinesweeperLeague.Views.Leaderboard({
+      collection: leaders
+    });
+
+    this._swapLeaderboardView(leaderboardView);
+
+    this._swapMainView();
   },
 
-  _swapView: function (view) {
-    this._currentView && this._currentView.remove();
-    this._currentView = view;
-    this.$rootEl.html(view.render().$el);
+  _swapLeaderboardView: function (view) {
+    this._currentLeaderboardView && this._currentLeaderboardView.remove();
+    this._currentLeaderboardView = view;
+    $('.leaderboard').html(view.render().$el);
+  },
+
+  _swapBoardView: function (view) {
+    this._currentBoardView && this._currentBoardView.remove();
+    this._currentBoardView = view;
+    $('.board').html(view.render().$el);
   },
 
 });
