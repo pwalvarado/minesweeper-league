@@ -14,6 +14,8 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
         cell.reveal();
       }
     });
+
+    this.allMinesRevealed = true;
   },
 
 });

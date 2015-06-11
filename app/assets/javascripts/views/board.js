@@ -4,6 +4,11 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
     this.populateOrResetSubviewGrid();
 
     this.listenTo(this.collection, 'change:revealed', function (model) {
+      if (this.collection.allMinesRevealed) {
+        this.stopListening();
+        return;
+      }
+
       this.subviewGrid[model.get('x')][model.get('y')].render();
     });
   },
@@ -42,10 +47,16 @@ MinesweeperLeague.Views.Board = Backbone.View.extend({
   reset: function () {
     this.collection.reset(MinesweeperLeague.generateCells());
     this.collection.ended = false;
+    this.collection.allMinesRevealed = false;
     this.removeSubviews();
     this.populateOrResetSubviewGrid();
     $('#main').html(this.render().$el);
     this.listenTo(this.collection, 'change:revealed', function (model) {
+      if (this.collection.allMinesRevealed) {
+        this.stopListening();
+        return;
+      }
+
       this.subviewGrid[model.get('x')][model.get('y')].render();
     });
   },
