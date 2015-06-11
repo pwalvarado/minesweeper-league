@@ -11,15 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609201947) do
+ActiveRecord::Schema.define(version: 20150611173733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "leaderboards", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name",       null: false
+    t.integer  "time",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "leaderboards", ["time"], name: "index_leaderboards_on_time", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.string   "session_token"
+    t.string   "username",        null: false
+    t.string   "password_digest", null: false
+    t.string   "session_token",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

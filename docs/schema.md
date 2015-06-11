@@ -14,7 +14,6 @@
 
 | column name | data type | details |
 |-------------|-----------|---------|
-| ranking     | integer | not null |
 | user_id     | integer | foreign key (references users) |
-| time        | integer | not null |
 | name        | string  | not null |
+| time        | integer | not null, indexed |
