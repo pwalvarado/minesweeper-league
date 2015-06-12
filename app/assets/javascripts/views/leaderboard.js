@@ -1,5 +1,7 @@
 MinesweeperLeague.Views.Leaderboard = Backbone.View.extend({
 
+  className: 'leaderboard row',
+
   initialize: function () {
     this.listenTo(this.collection, 'sync', this.render);
   },

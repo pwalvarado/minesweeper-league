@@ -25,13 +25,7 @@ MinesweeperLeague.generateCells = function (options) {
 
   for (var i = 0; i < 20; i++) {
     for (var j = 0; j < 20; j++) {
-      var cell = new MinesweeperLeague.Models.Cell({
-        x: i,
-        y: j,
-        revealed: false,
-        flagged: false,
-        mined: MinesweeperLeague.seedMine(0.2)
-      });
+      var cell = new MinesweeperLeague.Models.Cell({ x: i, y: j });
 
       cells.push(cell);
     }

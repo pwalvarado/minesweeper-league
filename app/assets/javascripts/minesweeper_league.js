@@ -5,7 +5,7 @@ window.MinesweeperLeague = {
   Routers: {},
   initialize: function() {
     var router = new MinesweeperLeague.Routers.Router({
-      $rootEl: $('#main')
+      $rootEl: $('#root')
     });
 
     Backbone.history.start();
