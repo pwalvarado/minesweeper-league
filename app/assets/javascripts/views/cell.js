@@ -35,35 +35,7 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
 
   events: {
     'click': 'reveal',
-    // contextmenu is right-click
     'contextmenu': 'flag',
-    'mousedown': 'bothClickSetUp',
-    'mouseup': 'bothClickTearDown'
-  },
-
-  bothClickSetUp: function (e) {
-    e.preventDefault();
-
-    if (e.which === 3) {
-      this.model.set('rightClickDepressed', true);
-    }
-
-    if (e.which === 1) {
-      this.model.set('leftClickDepressed', true);
-    }
-
-
-    if (this.model.get('rightClickDepressed') &&
-        this.model.get('leftClickDepressed')) {
-      this.model.sweep();
-    }
-  },
-
-  bothClickTearDown: function (e) {
-    e.preventDefault();
-
-    if (e.which === 3) { this.model.set('rightClickDepressed', false); }
-    if (e.which === 1) { this.model.set('leftClickDepressed', false); }
   },
 
   flag: function (e) {
@@ -79,12 +51,7 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
     if (this.model.get('flagged')) { return; }
 
     if (this.model.get('mined') && !this.model.collection.ended) {
-      if (this.model.collection.firstClick) {
-        this.model.set('mined', false);
-        this.model.collection.firstClickReseed(this.model);
-      } else {
-        this.model.collection.endGame();
-      }
+      this.model.collection.endGame();
     }
 
     this.model.reveal();

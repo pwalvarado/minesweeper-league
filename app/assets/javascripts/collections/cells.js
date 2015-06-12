@@ -18,16 +18,6 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
     });
   },
 
-  firstClickReseed: function (clickedCell) {
-    while (this.firstClick) {
-      var randomCell = this.at(Math.floor(Math.random() * this.length));
-      if (!randomCell.get('mined') && randomCell !== clickedCell) {
-        randomCell.set('mined', true);
-        this.firstClick = false;
-      }
-    }
-  },
-
 });
 
 MinesweeperLeague.generateCells = function (options) {

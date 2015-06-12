@@ -8,30 +8,18 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
       if (neighbor.get('mined')) { number += 1; }
     });
 
-    if (number === 0) { this._revealSurroundings(); }
-
     return number;
   },
 
   reveal: function () {
     if (this.get('mined') && !this.collection.gameOver) {
       this.collection.endGame();
+    } else if(this.get('flagged') || this.get("revealed")) {
+      // no op
     } else {
       this.set({ revealed: true });
+      if (this.getNumber() === 0) { this._revealSurroundings(); }
     }
-  },
-
-  sweep: function () {
-    var flagCount = 0;
-
-    this._getNeighbors().forEach(function (neighbor) {
-      if (neighbor.get('flagged')) { flagCount += 1; }
-    });
-
-    if (flagCount >= this.getNumber()) { this._revealSurroundings(); }
-    console.log(flagCount);
-    console.log(this.getNumber());
-    console.log(flagCount >= this.getNumber());
   },
 
   _getNeighbors: function () {
@@ -55,19 +43,12 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
     return neighbors;
   },
 
-  // this never reveals flagged cells.
   _revealSurroundings: function () {
-    var neighbors = this._getNeighbors();
-
-    neighbors.forEach(function (neighbor) {
-      if (!neighbor.get('flagged')) {
-        neighbor.reveal();
-      }
-    });
+    this._getNeighbors().forEach(function (neighbor) { neighbor.reveal(); });
   },
 
 });
 
 MinesweeperLeague.seedMine = function (fraction) {
-    return Math.random() <= fraction ? true : false;
+    return Math.random() <= fraction;
 };
