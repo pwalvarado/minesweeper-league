@@ -1,47 +1,48 @@
 MinesweeperLeague.Models.Cell = Backbone.Model.extend({
 
-  initialize: function () {
-    this.set({
-      mined: this._seedMine(0.2),
-      revealed: false,
-      flagged: false
-    });
-  },
-
-  sweep: function () {
-    // debugger;
-    var neighbors = this.getNeighborsArray();
-    var number = this.getNumber();
-    var checkSum = 0;
+  getNumber: function () {
+    var number = 0;
+    var neighbors = this._getNeighbors();
 
     neighbors.forEach(function (neighbor) {
-      if (neighbor.get('flagged')) {
-        checkSum += 1;
-      }
+      if (neighbor.get('mined')) { number += 1; }
     });
 
-    if (number <= checkSum) {
-      neighbors.forEach(function (neighbor) {
-        if (!neighbor.get('flagged')) {
-          neighbor.reveal();
-          if (neighbor.get('mined')) { this.collection.endGame(); }
-        }
-      }.bind(this));
+    if (number === 0) { this._revealSurroundings(); }
+
+    return number;
+  },
+
+  reveal: function () {
+    if (this.get('mined') && !this.collection.gameOver) {
+      this.collection.endGame();
+    } else {
+      this.set({ revealed: true });
     }
   },
 
-  getNeighborsArray: function () {
-    var neighbors = [];
+  sweep: function () {
+    var flagCount = 0;
 
-    var mainX = this.get('x');
-    var mainY = this.get('y');
+    this._getNeighbors().forEach(function (neighbor) {
+      if (neighbor.get('flagged')) { flagCount += 1; }
+    });
+
+    if (flagCount >= this.getNumber()) { this._revealSurroundings(); }
+    console.log(flagCount);
+    console.log(this.getNumber());
+    console.log(flagCount >= this.getNumber());
+  },
+
+  _getNeighbors: function () {
+    var neighbors = [];
+    var thisX = this.get('x'), thisY = this.get('y');
 
     for (var i = -1; i <= 1; i++) {
       for (var j = -1; j <= 1; j++) {
         if ( i === 0 && j === 0 ) { continue; }
 
-        var neighborX = mainX + i;
-        var neighborY = mainY + j;
+        var neighborX = thisX + i, neighborY = thisY + j;
         var neighbor = this.collection.findWhere({
           x: neighborX,
           y: neighborY
@@ -54,32 +55,19 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
     return neighbors;
   },
 
-  getNumber: function () {
-    var number = 0;
-    var neighbors = this.getNeighborsArray();
+  // this never reveals flagged cells.
+  _revealSurroundings: function () {
+    var neighbors = this._getNeighbors();
 
     neighbors.forEach(function (neighbor) {
-      if (neighbor.get('mined')) { number += 1; }
+      if (!neighbor.get('flagged')) {
+        neighbor.reveal();
+      }
     });
-
-    if (number === 0) { this.revealSurroundings(neighbors); }
-
-    return number;
-  },
-
-  reveal: function () {
-    this.set({ revealed: true });
-  },
-
-  // if this function gets called, the cell value must be 0
-  revealSurroundings: function (neighbors) {
-    neighbors.forEach(function (neighbor) {
-      neighbor.reveal();
-    });
-  },
-
-  _seedMine: function (fraction) {
-    return Math.random() <= fraction ? true : false;
   },
 
 });
+
+MinesweeperLeague.seedMine = function (fraction) {
+    return Math.random() <= fraction ? true : false;
+};
