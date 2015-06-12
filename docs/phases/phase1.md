@@ -8,23 +8,24 @@
 ### Controllers
 * UsersController(create, new)
 * SessionsController(create, new, destory)
+* StaticPagesController(root)
 
 ### Views
 * users/new.html.erb
+* users/show.html.erb
 * session/new.html.erb
-* static_pages/index.html.erb
+* static_pages/root.html.erb
 
 ## Backbone
 
 ### Models
 * Cell
-* Board
-* Game
 
 ### Collections
 * Cells
 
 ### Views
-* GameShow
+* Board
+* Cell
 
 ## Gems/Libraries

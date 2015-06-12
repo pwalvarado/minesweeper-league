@@ -10,7 +10,7 @@
 | email       | string    | unique  |
 | session_token | string | not null, unique |
 
-## leaderboard
+## leaders
 
 | column name | data type | details |
 |-------------|-----------|---------|

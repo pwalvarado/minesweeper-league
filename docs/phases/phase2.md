@@ -3,9 +3,10 @@
 ## Rails
 
 ### Models
+Leader
 
 ### Controllers
-* Api::LeaderboardsController(show, update)
+* Api::LeadersController(show, update)
 
 ### Views
 
@@ -18,7 +19,6 @@
 * Leaders
 
 ### Views
-* Leader
-* Leaderboard (CompositeView, contains Leader subviews)
+* Leaderboard (table of leaders)
 
 ## Gems/Libraries
