@@ -6,8 +6,8 @@
 ## Minimum Viable Product
 Minesweeper League is a website devoted to minesweeper. Users can:
 
-- [ ] Create accounts that do not require email verification.
-- [ ] Create sessions (log in).
+- [X] Create accounts that do not require email verification.
+- [X] Create sessions (log in).
 - [X] Play as guest if they do not have or want an account.
 - [X] Play the original (single player) minesweeper.
 - [ ] Play a 1v1 competitive variant of minesweeper.
