@@ -33,15 +33,27 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
   },
 
   beginner: function () {
-    console.log('beginner');
+    this.gameView = new MinesweeperLeague.Views.Game({
+      dimX: 9, dimY: 9, numMines: 10
+    });
+
+    this.render();
   },
 
   intermediate: function () {
-    console.log('intermediate');
+    this.gameView = new MinesweeperLeague.Views.Game({
+      dimX: 16, dimY: 16, numMines: 40
+    });
+
+    this.render();
   },
 
   expert: function () {
-    console.log('expert');
+    this.gameView = new MinesweeperLeague.Views.Game({
+      dimX: 16, dimY: 30, numMines: 99
+    });
+
+    this.render();
   },
 
 });
