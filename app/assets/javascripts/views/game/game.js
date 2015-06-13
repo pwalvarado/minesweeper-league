@@ -22,7 +22,8 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
   },
 
   events: {
-    'click .reset': 'reset'
+    'click .reset': 'reset',
+    'click .cell': 'startTimer'
   },
 
   reset: function () {
@@ -31,6 +32,13 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.gameBoardView.collection.gameOver = false;
     this.gameBoardView.collateSubviewGrid();
     this.gameBoardView.render();
+  },
+
+  startTimer: function () {
+    if (!this.started) {
+      this.started = true;
+      this.gameHeaderView.timerView.timer.start();
+    }
   },
 
 });
