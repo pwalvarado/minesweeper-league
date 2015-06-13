@@ -13,10 +13,6 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
 
   className: "game-board row",
 
-  events: {
-    'click .reset': 'reset'
-  },
-
   render: function () {
     this.$el.empty();
 
@@ -25,15 +21,6 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
     }.bind(this));
 
     return this;
-  },
-
-  reset: function () {
-    debugger;
-    this.collection.reset(MinesweeperLeague.generateCells());
-    this.collection.gameOver = false;
-    this.removeSubviews();
-    this.collateSubviewGrid();
-    $('.board').html(this.render().$el);
   },
 
   addSubview: function (x, y, subView) {

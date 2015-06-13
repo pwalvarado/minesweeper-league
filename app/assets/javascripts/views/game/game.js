@@ -21,4 +21,16 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     return this;
   },
 
+  events: {
+    'click .reset': 'reset'
+  },
+
+  reset: function () {
+    this.gameBoardView.removeSubviews();
+    this.gameBoardView.collection.reset(MinesweeperLeague.generateCells());
+    this.gameBoardView.collection.gameOver = false;
+    this.gameBoardView.collateSubviewGrid();
+    this.gameBoardView.render();
+  },
+
 });

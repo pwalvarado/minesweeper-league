@@ -15,6 +15,6 @@ MinesweeperLeague.Views.GameHeader = Backbone.View.extend({
     this.$el.append(this.timerView.render().$el);
 
     return this;
-  }
+  },
 
 });
