@@ -9,6 +9,7 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
   endGame: function () {
     this.gameOver = true;
     this.revealAllMines();
+    this.trigger('gameOver');
   },
 
   revealAllMines: function () {

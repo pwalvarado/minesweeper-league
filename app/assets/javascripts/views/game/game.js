@@ -9,6 +9,11 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.gameBoardView = new MinesweeperLeague.Views.GameBoard({
       collection: cells
     });
+
+    this.listenTo(cells, 'gameOver', function () {
+      this.gameHeaderView.timerView.timer.stop();
+      this.started = false;
+    });
   },
 
   className: 'game row center-block',
@@ -23,13 +28,16 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
 
   events: {
     'click .reset': 'reset',
-    'click .cell': 'startTimer'
+
+    // mousedown to prevent conflict with 'gameOver' listener, immediate reset.
+    'mousedown .cell': 'startTimer'
   },
 
   reset: function () {
     this.gameBoardView.removeSubviews();
     this.gameBoardView.collection.reset(MinesweeperLeague.generateCells());
     this.gameBoardView.collection.gameOver = false;
+    this.gameHeaderView.timerView.timer.stop();
     this.gameBoardView.collateSubviewGrid();
     this.gameBoardView.render();
   },
