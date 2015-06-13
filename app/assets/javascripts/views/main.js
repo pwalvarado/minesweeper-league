@@ -37,7 +37,7 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
       dimX: 9, dimY: 9, numMines: 10
     });
 
-    this.render();
+    $('.game').replaceWith(this.gameView.render().$el);
   },
 
   intermediate: function () {
@@ -45,7 +45,7 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
       dimX: 16, dimY: 16, numMines: 40
     });
 
-    this.render();
+    $('.game').replaceWith(this.gameView.render().$el);
   },
 
   expert: function () {
@@ -53,7 +53,7 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
       dimX: 16, dimY: 30, numMines: 99
     });
 
-    this.render();
+    $('.game').replaceWith(this.gameView.render().$el);
   },
 
 });
