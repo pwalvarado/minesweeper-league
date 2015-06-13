@@ -21,7 +21,19 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
       // don't reveal flagged or already revealed cells.
     } else {
       this.set({ revealed: true });
-      if (this.getNumber() === 0) { this._revealSurroundings(); }
+      if (this.getNumber() === 0 && !this.collection.gameOver) {
+        this._revealSurroundings();
+      }
+    }
+  },
+
+  flag: function () {
+    if (this.get('revealed') || this.collection.gameOver) { return; }
+
+    if (this.get('flagged')) {
+      this.set('flagged', false);
+    } else {
+      this.set('flagged', true);
     }
   },
 

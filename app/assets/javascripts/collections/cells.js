@@ -2,7 +2,6 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
 
   initialize: function () {
     this.gameOver = false;
-    this.firstClick = true;
   },
 
   model: MinesweeperLeague.Models.Cell,
