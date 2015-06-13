@@ -5,7 +5,10 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
   initialize: function () {
     this.gameOptionsView = new MinesweeperLeague.Views.GameOptions();
 
-    this.gameView = new MinesweeperLeague.Views.Game();
+    // initializes to expert difficulty.
+    this.gameView = new MinesweeperLeague.Views.Game({
+      dimX: 30, dimY: 16, numMines: 99
+    });
 
     var leaders = new MinesweeperLeague.Collections.Leaders();
     leaders.fetch();
@@ -21,6 +24,24 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
     this.$el.append(this.leaderboardView.render().$el);
 
     return this;
+  },
+
+  events: {
+    "click .game-options-btn:contains('Beginner')": 'beginner',
+    "click .game-options-btn:contains('Intermediate')": 'intermediate',
+    "click .game-options-btn:contains('Expert')": 'expert'
+  },
+
+  beginner: function () {
+    console.log('beginner');
+  },
+
+  intermediate: function () {
+    console.log('intermediate');
+  },
+
+  expert: function () {
+    console.log('expert');
   },
 
 });

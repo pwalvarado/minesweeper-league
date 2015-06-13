@@ -1,9 +1,5 @@
 MinesweeperLeague.Models.Cell = Backbone.Model.extend({
 
-  initialize: function (options) {
-    this.set('mined', Math.random() <= 0.2);
-  },
-
   getNumber: function () {
     var number = 0, neighbors = this._getNeighbors();
 
