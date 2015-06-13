@@ -2,10 +2,10 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
 
   className: "cell",
 
+  template: JST['game/cell'],
+
   render: function () {
-    this.$el
-      .attr('x', this.model.get('x'))
-      .attr('y', this.model.get('y'));
+    this.$el.attr('x', this.model.get('x')).attr('y', this.model.get('y'));
 
     if (this.model.get('flagged')) {
       this.$el.addClass('flagged');
@@ -31,7 +31,6 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
     return this;
   },
 
-  template: JST['cell'],
 
   events: {
     'click': 'reveal',

@@ -17,8 +17,8 @@
 }
 
 // Uses a forced 16px*(num of cells in row) to get new cell line
-.cells {
-  width: 320px;
+.game {
+  width: 296px;
 }
 
 .revealed {
@@ -54,4 +54,8 @@
 
 .game-board {
   border-style: solid;
+}
+
+.game-options-btn {
+  width: 33%;
 }

@@ -1,14 +1,14 @@
 MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
 
   initialize: function () {
-    // this.collateSubviewGrid();
+    this.collateSubviewGrid();
 
-    // this.listenTo( this.collection, 'change:revealed change:flagged',
-    //   function (model) {
-    //     if (this.collection.allMinesRevealed) { this.stopListening(); return; }
-    //
-    //     this.subviewGrid[model.get('x')][model.get('y')].render();
-    // });
+    this.listenTo( this.collection, 'change:revealed change:flagged',
+      function (model) {
+        if (this.collection.allMinesRevealed) { this.stopListening(); return; }
+
+        this.subviewGrid[model.get('x')][model.get('y')].render();
+    });
   },
 
   className: "game-board row",
@@ -20,11 +20,9 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
   render: function () {
     this.$el.empty();
 
-    // this.$el.html(content);
-    // this.eachSubview(function (subview) {
-    //   this.$el.find('.cells').append(subview.render().$el);
-    // }.bind(this));
-    // this.delegateEvents();
+    this.eachSubview(function (subview) {
+      this.$el.append(subview.render().$el);
+    }.bind(this));
 
     return this;
   },
