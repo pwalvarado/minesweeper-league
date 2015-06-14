@@ -24,17 +24,17 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
   },
 
   addSubview: function (x, y, subView) {
-    if (!this.subviewGrid[x]) {
-      this.subviewGrid[x] = [];
+    if (!this.subviewGrid[y]) {
+      this.subviewGrid[y] = [];
     }
 
-    this.subviewGrid[x][y] = subView;
+    this.subviewGrid[y][x] = subView;
   },
 
   eachSubview: function (callback) {
-    for (var rowName in this.subviewGrid) {
-      for (var cellName in this.subviewGrid[rowName]) {
-        callback(this.subviewGrid[rowName][cellName]);
+    for (var row in this.subviewGrid) {
+      for (var cell in this.subviewGrid[row]) {
+        callback(this.subviewGrid[row][cell]);
       }
     }
   },
