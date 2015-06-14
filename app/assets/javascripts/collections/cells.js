@@ -1,7 +1,9 @@
 MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
 
-  initialize: function () {
+  initialize: function (modelArray, options) {
     this.gameOver = false;
+    this.safeCells = options.numCells - options.numMines;
+    this.revealedCells = 0;
   },
 
   model: MinesweeperLeague.Models.Cell,
@@ -10,6 +12,13 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
     this.gameOver = true;
     this.revealAllMines();
     this.trigger('gameOver');
+  },
+
+  incrementRevealedCells: function () {
+    this.revealedCells += 1;
+    if (this.revealedCells === this.safeCells && !this.gameOver) {
+      this.trigger('gameWon');
+    }
   },
 
   revealAllMines: function () {

@@ -14,8 +14,7 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     var cells = new MinesweeperLeague.Collections.Cells(
       MinesweeperLeague.generateCells({
         dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
-      })
-    );
+      }), { numMines: this.numMines, numCells: this.dimX * this.dimY });
     this.gameBoardView = new MinesweeperLeague.Views.GameBoard({
       collection: cells
     });
@@ -33,6 +32,12 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
         this.gameHeaderView.mineCountView.minesRemaining += 1;
         this.gameHeaderView.mineCountView.render();
       }
+    });
+
+    this.listenTo(cells, 'gameWon', function () {
+      this.gameHeaderView.timerView.timer.stop();
+      window.alert('you won with a time of ' +
+        this.gameHeaderView.timerView.timer.previousRun);
     });
   },
 
@@ -60,6 +65,7 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     }));
     this.gameBoardView.collection.gameOver = false;
     this.gameBoardView.collection.allMinesRevealed = false;
+    this.gameBoardView.collection.revealedCells = 0;
     this.gameBoardView.activateListeners();
     this.gameHeaderView.timerView.timer.stop();
     this.gameHeaderView.mineCountView.minesRemaining = this.numMines;

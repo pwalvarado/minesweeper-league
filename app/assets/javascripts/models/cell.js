@@ -17,6 +17,7 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
       this.collection.endGame();
     } else {
       this.set({ revealed: true });
+      this.collection.incrementRevealedCells();
       if (this.getNumber() === 0 && !this.collection.gameOver) {
         this._revealSurroundings();
       }
