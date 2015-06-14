@@ -47,6 +47,8 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
       dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
     }));
     this.gameBoardView.collection.gameOver = false;
+    this.gameBoardView.collection.allMinesRevealed = false;
+    this.gameBoardView.activateListeners();
     this.gameHeaderView.timerView.timer.stop();
     this.gameBoardView.collateSubviewGrid();
     this.gameBoardView.render();

@@ -16,6 +16,8 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
     this.each(function (cell) {
       if (cell.get('mined')) { cell.reveal(); }
     });
+
+    this.allMinesRevealed = true;
   },
 
 });
