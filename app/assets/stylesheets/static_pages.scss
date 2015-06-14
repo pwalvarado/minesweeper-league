@@ -17,9 +17,10 @@
    cursor: default;
 }
 
-.cell:active {
-  border-style: inset;
-}
+// The start of the hover/active depress
+// .cell:active {
+//   border-style: inset;
+// }
 
 .beginner {
   width: 120px;

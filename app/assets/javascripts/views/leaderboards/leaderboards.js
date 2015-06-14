@@ -1,6 +1,6 @@
 MinesweeperLeague.Views.Leaderboards = Backbone.View.extend({
 
-  className: 'leaderboards row col-md-6 col-md-offset-3',
+  className: 'leaderboards row col-md-8 col-md-offset-2',
 
   initialize: function () {
     var beginnerLeaders = new MinesweeperLeague.Collections.BeginnerLeaders();
