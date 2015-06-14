@@ -17,22 +17,15 @@
 }
 
 .beginner {
-  // width: 144px;
   width: 120px;
 }
 
 .intermediate {
-  // width: 356px;
   width: 232px;
 }
 
 .expert {
-  // width: 480px;
   width: 456px;
-}
-
-.custom {
-
 }
 
 .revealed {
@@ -48,28 +41,18 @@
   color: orangered;
 }
 
-.game-header {
-  border-style: solid;
-}
-
-.game-mine-count {
-  float: left;
-}
-
-.reset.btn {
-  float: left;
-  color: red;
-  margin: 0 auto;
-}
-
 .timer {
-  float: left;
-}
-
-.game-board {
-  border-style: solid;
+  text-align: right;
 }
 
 .game-options-btn {
   width: 33%;
+}
+
+.game-options {
+  margin-bottom: 20px;
+}
+
+.leaderboard {
+  margin-top: 20px;
 }
