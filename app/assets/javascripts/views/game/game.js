@@ -55,7 +55,7 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
   },
 
   startTimer: function () {
-    if (!this.started) {
+    if (!this.started && !this.gameBoardView.collection.allMinesRevealed) {
       this.started = true;
       this.gameHeaderView.timerView.timer.start();
     }
