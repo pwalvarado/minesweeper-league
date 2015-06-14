@@ -35,7 +35,6 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     });
 
     this.listenTo(cells, 'gameWon', function () {
-      console.log('im in the game view and i just won');
       this.gameHeaderView.timerView.timer.stop();
       this.trigger('bestTime', this.gameHeaderView.timerView.timer.previousRun,
         this.determineLevel());
