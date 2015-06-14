@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611215337) do
+ActiveRecord::Schema.define(version: 20150614040751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "leaders", force: :cascade do |t|
+  create_table "beginner_leaders", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",       null: false
     t.integer  "time",       null: false
@@ -24,7 +24,27 @@ ActiveRecord::Schema.define(version: 20150611215337) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "leaders", ["time"], name: "index_leaders_on_time", using: :btree
+  add_index "beginner_leaders", ["time"], name: "index_beginner_leaders_on_time", using: :btree
+
+  create_table "expert_leaders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name",       null: false
+    t.integer  "time",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "expert_leaders", ["time"], name: "index_expert_leaders_on_time", using: :btree
+
+  create_table "intermediate_leaders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name",       null: false
+    t.integer  "time",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "intermediate_leaders", ["time"], name: "index_intermediate_leaders_on_time", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
