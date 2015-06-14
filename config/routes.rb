@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :new, :destroy]
 
   namespace :api, default: { format: :json } do
-    resources :leaders, only: [:show, :create, :index]
+    namespace :leaders, default: {format: :json} do
+      resources :beginner_leaders, only: [:index]
+      resources :intermediate_leaders, only: [:index]
+      resources :expert_leaders, only: [:index]
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
