@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 
   namespace :api, default: { format: :json } do
     namespace :leaders, default: {format: :json} do
-      resources :beginner_leaders, only: [:index]
-      resources :intermediate_leaders, only: [:index]
-      resources :expert_leaders, only: [:index]
+      resources :beginner_leaders, only: [:index, :create]
+      resources :intermediate_leaders, only: [:index, :create]
+      resources :expert_leaders, only: [:index, :create]
     end
   end
 end

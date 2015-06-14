@@ -6,4 +6,19 @@ class Api::Leaders::BeginnerLeadersController < ApplicationController
     render json: @beginner_leaders
   end
 
+  def create
+    @beginner_leader = BeginnerLeader.new(beginner_leader_params)
+
+    if @beginner_leader.save
+    else
+      flash.now[:errors] = @beginner_leader.errors.full_messages
+    end
+  end
+
+  private
+
+    def beginner_leader_params
+      params.require(:leader).permit(:user_id, :name, :time)
+    end
+
 end

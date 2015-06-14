@@ -11,6 +11,13 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
     });
 
     this.leaderboardsView = new MinesweeperLeague.Views.Leaderboards();
+
+    this.activateListener();
+  },
+
+  activateListener: function () {
+    this.listenTo(this.gameView, 'bestTime', function (bestTime, level) {
+    });
   },
 
   render: function () {
@@ -34,6 +41,8 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
     });
 
     $('.game').replaceWith(this.gameView.render().$el);
+
+    this.activateListener();
   },
 
   intermediate: function () {
@@ -42,6 +51,8 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
     });
 
     $('.game').replaceWith(this.gameView.render().$el);
+
+    this.activateListener();
   },
 
   expert: function () {
@@ -50,6 +61,8 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
     });
 
     $('.game').replaceWith(this.gameView.render().$el);
+
+    this.activateListener();
   },
 
 });
