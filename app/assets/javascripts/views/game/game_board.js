@@ -7,7 +7,7 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
       function (model) {
         if (this.collection.allMinesRevealed) { this.stopListening(); return; }
 
-        this.subviewGrid[model.get('x')][model.get('y')].render();
+        this.subviewGrid[model.get('y')][model.get('x')].render();
     });
   },
 
