@@ -17,6 +17,12 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
 
   activateListener: function () {
     this.listenTo(this.gameView, 'bestTime', function (bestTime, level) {
+      this.bestTimeModalForm = new MinesweeperLeague.Views.BestTimeModal({
+        bestTime: bestTime,
+        level: level
+      });
+
+      $('body').prepend(this.bestTimeModalForm.render().$el);
     });
   },
 
