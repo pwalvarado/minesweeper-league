@@ -1,7 +1,7 @@
 [lichess]: http://en.lichess.org/
 
 # Minesweeper League
-[heroku link](https://minesweeper-league.herokuapp.git addcom/)
+[heroku link](https://minesweeper-league.herokuapp.com/)
 
 ## Minimum Viable Product
 Minesweeper League is a website devoted to minesweeper. Users can:
