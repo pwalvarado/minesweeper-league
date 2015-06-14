@@ -7,7 +7,9 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
 
     this.determineLevel();
 
-    this.gameHeaderView = new MinesweeperLeague.Views.GameHeader();
+    this.gameHeaderView = new MinesweeperLeague.Views.GameHeader({
+      minesRemaining: this.numMines
+    });
 
     var cells = new MinesweeperLeague.Collections.Cells(
       MinesweeperLeague.generateCells({
@@ -21,6 +23,16 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.listenTo(cells, 'gameOver', function () {
       this.gameHeaderView.timerView.timer.stop();
       this.started = false;
+    });
+
+    this.listenTo(cells, 'change:flagged', function (model, value, options) {
+      if (value) {
+        this.gameHeaderView.mineCountView.minesRemaining -= 1;
+        this.gameHeaderView.mineCountView.render();
+      } else {
+        this.gameHeaderView.mineCountView.minesRemaining += 1;
+        this.gameHeaderView.mineCountView.render();
+      }
     });
   },
 

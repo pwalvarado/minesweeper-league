@@ -19,7 +19,7 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
   },
 
   activateListeners: function () {
-    this.listenTo( this.collection, 'change:revealed change:flagged',
+    this.listenTo(this.collection, 'change:revealed change:flagged',
       function (model) {
         if (this.collection.allMinesRevealed) { this.stopListening(); return; }
 

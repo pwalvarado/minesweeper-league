@@ -1,7 +1,9 @@
 MinesweeperLeague.Views.GameHeader = Backbone.View.extend({
 
-  initialize: function () {
-    this.mineCountView = new MinesweeperLeague.Views.GameMineCount();
+  initialize: function (options) {
+    this.mineCountView = new MinesweeperLeague.Views.GameMineCount({
+      minesRemaining: options.minesRemaining
+    });
     this.timerView = new MinesweeperLeague.Views.GameTimer();
   },
 
