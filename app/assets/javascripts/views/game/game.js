@@ -5,6 +5,8 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.dimY = options.dimY;
     this.numMines = options.numMines;
 
+    this.determineLevel();
+
     this.gameHeaderView = new MinesweeperLeague.Views.GameHeader();
 
     var cells = new MinesweeperLeague.Collections.Cells(
@@ -56,5 +58,24 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
       this.gameHeaderView.timerView.timer.start();
     }
   },
+
+  determineLevel: function () {
+    if (this.dimX === 9 && this.dimY === 9 && this.numMines === 10) {
+      this.$el.addClass('beginner');
+      return;
+    }
+
+    if (this.dimX === 16 && this.dimY === 16 && this.numMines === 40) {
+      this.$el.addClass('intermediate');
+      return;
+    }
+
+    if (this.dimX === 30 && this.dimY === 16 && this.numMines === 99) {
+      this.$el.addClass('expert');
+      return;
+    }
+
+    this.$el.addClass('custom');
+  }
 
 });

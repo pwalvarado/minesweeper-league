@@ -16,9 +16,23 @@
    user-select: none;
 }
 
-// Uses a forced 16px*(num of cells in row) to get new cell line
-.game {
-  width: 296px;
+.beginner {
+  // width: 144px;
+  width: 120px;
+}
+
+.intermediate {
+  // width: 356px;
+  width: 232px;
+}
+
+.expert {
+  // width: 480px;
+  width: 456px;
+}
+
+.custom {
+
 }
 
 .revealed {

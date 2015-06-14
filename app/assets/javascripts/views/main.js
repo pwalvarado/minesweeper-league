@@ -50,7 +50,7 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
 
   expert: function () {
     this.gameView = new MinesweeperLeague.Views.Game({
-      dimX: 16, dimY: 30, numMines: 99
+      dimX: 30, dimY: 16, numMines: 99
     });
 
     $('.game').replaceWith(this.gameView.render().$el);
