@@ -10,18 +10,14 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
       dimX: 30, dimY: 16, numMines: 99
     });
 
-    var leaders = new MinesweeperLeague.Collections.Leaders();
-    leaders.fetch();
-    this.leaderboardView = new MinesweeperLeague.Views.Leaderboard({
-      collection: leaders
-    });
+    this.leaderboardsView = new MinesweeperLeague.Views.Leaderboards();
   },
 
   render: function () {
     this.$el.empty();
     this.$el.append(this.gameOptionsView.render().$el);
     this.$el.append(this.gameView.render().$el);
-    this.$el.append(this.leaderboardView.render().$el);
+    this.$el.append(this.leaderboardsView.render().$el);
 
     return this;
   },

@@ -1,0 +1,21 @@
+<table class="intermediate-table table table-bordered">
+  <caption>Intermediate</caption>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% rank = 1 %>
+    <% intermediateLeaders.each(function (intermediateLeader) { %>
+      <tr>
+        <th scope="row"><%= rank %></th>
+        <td><%= intermediateLeader.get('name') %></td>
+        <td><%= intermediateLeader.get('time') %></td>
+      </tr>
+      <% rank += 1 %>
+    <% }) %>
+  </tbody>
+</table>

@@ -1,0 +1,21 @@
+<table class="beginner-table table table-bordered">
+  <caption>Beginner</caption>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% var rank = 1 %>
+    <% beginnerLeaders.each(function (beginnerLeader) { %>
+      <tr>
+        <th scope="row"><%= rank %></th>
+        <td><%= beginnerLeader.get('name') %></td>
+        <td><%= beginnerLeader.get('time') %></td>
+      </tr>
+      <% rank += 1 %>
+    <% }) %>
+  </tbody>
+</table>

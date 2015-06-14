@@ -1,0 +1,21 @@
+<table class="expert-table table table-bordered">
+  <caption>Expert</caption>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% rank = 1 %>
+    <% expertLeaders.each(function (expertLeader) { %>
+      <tr>
+        <th scope="row"><%= rank %></th>
+        <td><%= expertLeader.get('name') %></td>
+        <td><%= expertLeader.get('time') %></td>
+      </tr>
+      <% rank += 1 %>
+    <% }) %>
+  </tbody>
+</table>
