@@ -11,10 +11,10 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
   },
 
   reveal: function () {
-    if (this.get('mined') && !this.collection.gameOver) {
-      this.collection.endGame();
-    } else if (this.get('flagged') || this.get("revealed")) {
+    if (this.get('flagged') || this.get("revealed")) {
       // don't reveal flagged or already revealed cells.
+    } else if (this.get('mined') && !this.collection.gameOver) {
+      this.collection.endGame();
     } else {
       this.set({ revealed: true });
       if (this.getNumber() === 0 && !this.collection.gameOver) {
