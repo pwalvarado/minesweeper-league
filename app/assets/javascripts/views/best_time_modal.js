@@ -22,7 +22,7 @@ MinesweeperLeague.Views.BestTimeModal = Backbone.View.extend({
 
   submitBestTime: function (e) {
     e.preventDefault();
-    var serializedData = $(e.currentTarget).serialize();
+    var serializedData = $(e.currentTarget).serializeJSON();
     switch (this.level) {
       case 'beginner':
         this.mainView.leaderboardsView.beginnerLeaders.create(
