@@ -15,7 +15,6 @@ MinesweeperLeague.Views.BestTimeModal = Backbone.View.extend({
   },
 
   events: {
-    'click .m-backdrop': 'remove',
     'click .close': 'remove',
     'submit form': 'submitBestTime'
   },
@@ -26,22 +25,21 @@ MinesweeperLeague.Views.BestTimeModal = Backbone.View.extend({
     switch (this.level) {
       case 'beginner':
         this.mainView.leaderboardsView.beginnerLeaders.create(
-          serializedData, {
-          });
+          serializedData, { wait: true });
         break;
       case 'intermediate':
         this.mainView.leaderboardsView.intermediateLeaders.create(
-          serializedData, {
-
-          });
+          serializedData, { wait: true });
         break;
       case 'expert':
-        this.mainView.leaderbaordsView.experLeaders.create(
-          serializedData, {
-
-          });
+        this.mainView.leaderboardsView.expertLeaders.create(
+          serializedData, { wait: true });
         break;
     }
+
+    this.$el.remove();
   },
+
+  remove: function () { this.$el.remove(); }
 
 });

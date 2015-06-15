@@ -1,7 +1,7 @@
 MinesweeperLeague.Views.IntermediateLeaderboard = Backbone.View.extend({
 
   initialize: function () {
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'add', this.render);
   },
 
   className: 'intermediate-leaderboard col-md-4',
