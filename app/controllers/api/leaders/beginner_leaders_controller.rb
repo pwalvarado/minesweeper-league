@@ -1,3 +1,5 @@
+require 'byebug'
+
 class Api::Leaders::BeginnerLeadersController < ApplicationController
 
   def index
@@ -7,6 +9,7 @@ class Api::Leaders::BeginnerLeadersController < ApplicationController
   end
 
   def create
+    byebug
     @beginner_leader = BeginnerLeader.new(beginner_leader_params)
 
     if @beginner_leader.save

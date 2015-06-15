@@ -16,10 +16,12 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
   },
 
   activateListener: function () {
+    // the 'bestTime' and 'level' function arguments are passed in on trigger()
     this.listenTo(this.gameView, 'bestTime', function (bestTime, level) {
       this.bestTimeModalForm = new MinesweeperLeague.Views.BestTimeModal({
         bestTime: bestTime,
-        level: level
+        level: level,
+        mainView: this
       });
 
       $('body').prepend(this.bestTimeModalForm.render().$el);

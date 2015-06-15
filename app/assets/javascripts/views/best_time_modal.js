@@ -3,6 +3,7 @@ MinesweeperLeague.Views.BestTimeModal = Backbone.View.extend({
   initialize: function (options) {
     this.bestTime = options.bestTime;
     this.level = options.level;
+    this.mainView = options.mainView;
   },
 
   template: JST['best_time_modal'],
@@ -21,7 +22,26 @@ MinesweeperLeague.Views.BestTimeModal = Backbone.View.extend({
 
   submitBestTime: function (e) {
     e.preventDefault();
-    debugger;
+    var serializedData = $(e.currentTarget).serialize();
+    switch (this.level) {
+      case 'beginner':
+        this.mainView.leaderboardsView.beginnerLeaders.create(
+          serializedData, {
+          });
+        break;
+      case 'intermediate':
+        this.mainView.leaderboardsView.intermediateLeaders.create(
+          serializedData, {
+
+          });
+        break;
+      case 'expert':
+        this.mainView.leaderbaordsView.experLeaders.create(
+          serializedData, {
+
+          });
+        break;
+    }
   },
 
 });
