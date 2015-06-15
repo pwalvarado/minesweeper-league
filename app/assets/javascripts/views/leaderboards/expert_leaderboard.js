@@ -4,7 +4,7 @@ MinesweeperLeague.Views.ExpertLeaderboard = Backbone.View.extend({
     this.listenTo(this.collection, 'add', this.render);
   },
 
-  className: 'expert-leaderboard col-md-4',
+  className: 'expert-leaderboard col-md-4 table-responsive',
 
   template: JST['leaderboards/expert_leaderboard'],
 
