@@ -1,6 +1,6 @@
 MinesweeperLeague.Views.Leaderboards = Backbone.View.extend({
 
-  className: 'leaderboards row col-md-8 col-md-offset-2',
+  className: 'leaderboards-row row',
 
   initialize: function () {
     this.beginnerLeaders = new MinesweeperLeague.Collections.BeginnerLeaders();
@@ -25,11 +25,14 @@ MinesweeperLeague.Views.Leaderboards = Backbone.View.extend({
     });
   },
 
+  template: JST['leaderboards/leaderboards'],
+
   render: function () {
-    this.$el.empty();
-    this.$el.append(this.beginnerLeaderboardView.render().$el);
-    this.$el.append(this.intermediateLeaderboardView.render().$el);
-    this.$el.append(this.expertLeaderboardView.render().$el);
+    this.$el.html(this.template());
+    var $leaderboards = this.$el.find('.leaderboards');
+    $leaderboards.append(this.beginnerLeaderboardView.render().$el);
+    $leaderboards.append(this.intermediateLeaderboardView.render().$el);
+    $leaderboards.append(this.expertLeaderboardView.render().$el);
 
     return this;
   },
