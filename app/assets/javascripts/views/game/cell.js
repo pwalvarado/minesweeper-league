@@ -8,7 +8,7 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
     this.$el.attr('x', this.model.get('x')).attr('y', this.model.get('y'));
 
     if (this.model.get('flagged')) {
-      this.$el.addClass('flagged').html('F');
+      this.$el.addClass('flagged').html('&#x2691');
     } else {
       this.$el.empty().removeClass('flagged');
     }
@@ -17,7 +17,7 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
       this.$el.addClass('revealed');
 
       if (this.model.get('mined')) {
-        this.$el.addClass('mined').html('M');
+        this.$el.addClass('mined').html('&#x1f4a3');
       } else {
         var num = this.model.getNumber();
         this.$el.empty();
