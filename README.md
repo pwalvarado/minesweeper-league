@@ -2,6 +2,7 @@
 
 # Minesweeper League
 [minesweeperleague.com](http://minesweeperleague.com)
+
 [heroku link](https://minesweeper-league.herokuapp.com/)
 
 ## Minimum Viable Product
