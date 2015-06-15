@@ -1,55 +1,6 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.cell {
-   float: left;
-   width: 16px;
-   height: 16px;
-   border-style: outset;
-   background-color: lightgrey;
-   border-width: 2px;
-   -webkit-touch-callout: none;
-   -webkit-user-select: none;
-   -khtml-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-   cursor: default;
-}
-
-// The start of the hover/active depress
-// .cell:active {
-//   border-style: inset;
-// }
-
-.beginner {
-  width: 120px;
-}
-
-.intermediate {
-  width: 232px;
-}
-
-.expert {
-  width: 456px;
-}
-
-.revealed {
-  border-style: inset;
-  background-color: lightgrey;
-}
-
-.mined {
-  color: orangered;
-}
-
-.flagged {
-  color: orangered;
-}
-
-.timer {
-  text-align: right;
-}
 
 .game-options-btn {
   width: 33%;
@@ -61,10 +12,6 @@
 
 .leaderboard {
   margin-top: 20px;
-}
-
-.game-header {
-  margin-bottom: 5px;
 }
 
 .m-content {
@@ -79,6 +26,7 @@
   margin-top: 66px;
   left: 25%;
 }
+
 .m-backdrop {
   position: absolute;
   background-color: rgba(170, 169, 176, .5);

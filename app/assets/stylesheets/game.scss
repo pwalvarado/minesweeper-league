@@ -1,0 +1,48 @@
+.cell {
+   float: left;
+   width: 16px;
+   height: 16px;
+   border-style: outset;
+   background-color: lightgrey;
+   border-width: 2px;
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   cursor: default;
+}
+
+.beginner {
+  width: 120px;
+}
+
+.intermediate {
+  width: 232px;
+}
+
+.expert {
+  width: 456px;
+}
+
+.revealed {
+  border-style: inset;
+  background-color: lightgrey;
+}
+
+.mined {
+  color: orangered;
+}
+
+.flagged {
+  color: orangered;
+}
+
+.timer {
+  text-align: right;
+}
+
+.game-header {
+  margin-bottom: 5px;
+}
