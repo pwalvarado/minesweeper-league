@@ -12,8 +12,8 @@ Minesweeper League is a website devoted to minesweeper. Users can:
 - [X] Create sessions (log in).
 - [X] Play as guest if they do not have or want an account.
 - [X] Play the original (single player) minesweeper.
+- [X] View and update the single player leaderboards.
 - [ ] Play a 1v1 competitive variant of minesweeper.
-- [ ] View the leaderboards for a given difficulty and variant.
 
 ## Design Docs
 * [View Wireframes](https://github.com/aegatlin/minesweeper-league/tree/master/docs/views.md)
