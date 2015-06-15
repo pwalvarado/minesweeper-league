@@ -5,30 +5,24 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'main'
+    '': 'main',
+    'two-player': 'twoPlayer'
   },
 
   main: function () {
     var mainView = new MinesweeperLeague.Views.Main();
 
+    $('.navbar-nav').not('.navbar-right').children().removeClass('active');
+    $(".nav > li").has("a[href='#']").addClass('active');
     this._swapView(mainView);
+  },
 
-    // var cells = new MinesweeperLeague.Collections.Cells(
-    //   MinesweeperLeague.generateCells()
-    // );
-    // var boardView = new MinesweeperLeague.Views.Board({
-    //   collection: cells
-    // });
-    //
-    // this._swapBoardView(boardView);
-    //
-    // var leaders = new MinesweeperLeague.Collections.Leaders();
-    // leaders.fetch();
-    // var leaderboardView = new MinesweeperLeague.Views.Leaderboard({
-    //   collection: leaders
-    // });
-    //
-    // this._swapLeaderboardView(leaderboardView);
+  twoPlayer: function () {
+    var twoPlayerView = new MinesweeperLeague.Views.TwoPlayer();
+
+    $('.navbar-nav').not('.navbar-right').children().removeClass('active');
+    $(".nav > li").has("a[href='#two-player']").addClass('active');
+    this._swapView(twoPlayerView);
   },
 
   _swapView: function (view) {
@@ -36,17 +30,5 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
   },
-
-  // _swapLeaderboardView: function (view) {
-  //   this._currentLeaderboardView && this._currentLeaderboardView.remove();
-  //   this._currentLeaderboardView = view;
-  //   $('.leaderboard').html(view.render().$el);
-  // },
-  //
-  // _swapBoardView: function (view) {
-  //   this._currentBoardView && this._currentBoardView.remove();
-  //   this._currentBoardView = view;
-  //   $('.board').html(view.render().$el);
-  // },
 
 });
