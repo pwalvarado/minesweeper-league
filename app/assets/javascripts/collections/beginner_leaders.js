@@ -4,4 +4,6 @@ MinesweeperLeague.Collections.BeginnerLeaders = Backbone.Collection.extend({
 
   model: MinesweeperLeague.Models.BeginnerLeader,
 
+  comparator: 'time',
+
 });

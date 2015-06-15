@@ -4,4 +4,6 @@ MinesweeperLeague.Collections.IntermediateLeaders = Backbone.Collection.extend({
 
   model: MinesweeperLeague.Models.IntermediateLeader,
 
+  comparator: 'time',
+
 });

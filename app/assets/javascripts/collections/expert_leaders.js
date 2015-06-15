@@ -4,4 +4,6 @@ MinesweeperLeague.Collections.ExpertLeaders = Backbone.Collection.extend({
 
   model: MinesweeperLeague.Models.ExpertLeader,
 
+  comparator: 'time',
+
 });
