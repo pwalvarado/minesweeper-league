@@ -20,8 +20,9 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
         this.$el.addClass('mined').html('&#x1f4a3');
       } else {
         var num = this.model.getNumber();
+        var color = this.getColor(num);
         this.$el.empty();
-        if (num !== 0) { this.$el.html(num); }
+        if (num !== 0) { this.$el.css('color', color).html(num); }
       }
     }
 
@@ -42,6 +43,22 @@ MinesweeperLeague.Views.Cell = Backbone.View.extend({
 
   clickReveal: function (e) {
     this.model.reveal();
+  },
+
+  getColor: function (num) {
+    var color = "color";
+    switch (num) {
+      case 1: color = "blue"; break;
+      case 2: color = "green"; break;
+      case 3: color = "red"; break;
+      case 4: color = "purple"; break;
+      case 5: color = "maroon"; break;
+      case 6: color = "cyan"; break;
+      case 7: color = "black"; break;
+      case 8: color = "grey"; break;
+    }
+
+    return color;
   },
 
 });
