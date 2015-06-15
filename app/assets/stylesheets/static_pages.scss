@@ -2,17 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.game-options-btn {
-  width: 33%;
+// .game-options-btn {
+//   width: 33%;
+// }
+//
+.game-options-col {
+  text-align: center;
 }
 
-.game-options {
-  margin-bottom: 20px;
+.container > .row {
+  margin-bottom: 10px;
 }
-
-.leaderboard {
-  margin-top: 20px;
-}
+//
+// .leaderboard {
+//   margin-top: 20px;
+// }
 
 .m-content {
   z-index: 101;
@@ -22,7 +26,6 @@
   height: 256px;
   width: 564px;
   position: fixed;
-  /* margin: 0 auto; */
   margin-top: 66px;
   left: 25%;
 }

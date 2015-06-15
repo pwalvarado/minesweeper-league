@@ -38,9 +38,9 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
   },
 
   events: {
-    "click .game-options-btn:contains('Beginner')": 'beginner',
-    "click .game-options-btn:contains('Intermediate')": 'intermediate',
-    "click .game-options-btn:contains('Expert')": 'expert'
+    "click .btn:contains('Beginner')": 'beginner',
+    "click .btn:contains('Intermediate')": 'intermediate',
+    "click .btn:contains('Expert')": 'expert'
   },
 
   beginner: function () {
