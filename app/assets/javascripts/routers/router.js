@@ -30,7 +30,9 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
   },
 
   twoPlayerGame: function (gameId) {
-    var twoPlayerView = new MinesweeperLeague.Views.TwoPlayer();
+    var twoPlayerView = new MinesweeperLeague.Views.TwoPlayerMain({
+      gameId: gameId
+    });
 
     $('.navbar-nav').not('.navbar-right').children().removeClass('active');
     $(".nav > li").has("a[href='#two_player_games/new']").addClass('active');

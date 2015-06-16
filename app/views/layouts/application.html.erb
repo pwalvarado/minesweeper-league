@@ -6,6 +6,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script src="//js.pusher.com/2.2/pusher.min.js"></script>
+  <%= javascript_tag "window.pusherAppId = '" + ENV['pusher_app_id'] + "'"%>
+  <%= javascript_tag "window.pusherKey = '" + ENV['pusher_key'] + "'" %>
 </head>
 <body>
 

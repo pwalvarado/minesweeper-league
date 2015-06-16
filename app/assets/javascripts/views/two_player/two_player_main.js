@@ -1,9 +1,14 @@
-MinesweeperLeague.Views.TwoPlayer = Backbone.View.extend({
+MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
 
-  initialize: function () {
+  initialize: function (options) {
+    this.gameId = options.gameId;
+
     this.twoPlayerDirectionsView =
       new MinesweeperLeague.Views.TwoPlayerDirections();
-    this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame();
+
+    this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
+      gameId: this.gameId
+    });
   },
 
   className: 'two-player-main container',
