@@ -1,12 +1,6 @@
 MinesweeperLeague.Views.TwoPlayer = Backbone.View.extend({
 
   initialize: function () {
-    // debugger;
-    // var pusher = new Pusher(ENV["pusher_app_id"]);
-    // var channel = pusher.subscribe(gameId);
-    // // var triggered = channel.trigger('client-eventName', {some: JSONData});
-    // channel.bind('opponentMove', updateOpponentBoard);
-
     this.twoPlayerDirectionsView =
       new MinesweeperLeague.Views.TwoPlayerDirections();
     this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame();
