@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :new, :destroy]
 
   namespace :api, default: { format: :json } do
+    resources :two_player_games, only: [:new]
+
     namespace :leaders, default: {format: :json} do
       resources :beginner_leaders, only: [:index, :create]
       resources :intermediate_leaders, only: [:index, :create]
