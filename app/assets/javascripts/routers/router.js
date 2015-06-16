@@ -7,7 +7,7 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'main',
     'two_player_games/new': 'twoPlayerNew',
-    // 'two_player_game/:gameId': 'twoPlayerGame'
+    'two_player_game/:gameId': 'twoPlayerGame'
   },
 
   main: function () {
@@ -19,19 +19,22 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
   },
 
   twoPlayerNew: function () {
-    console.log('hi mom');
+    var that = this;
+
     $.ajax('/api/two_player_games/new', {
       success: function (responseObject) {
-        
+        that.navigate('/two_player_game/' + responseObject.game_id,
+        { trigger: true });
       }
     });
   },
 
   twoPlayerGame: function (gameId) {
+    console.log(gameId);
     var twoPlayerView = new MinesweeperLeague.Views.TwoPlayer();
 
     $('.navbar-nav').not('.navbar-right').children().removeClass('active');
-    $(".nav > li").has("a[href='#two-player']").addClass('active');
+    $(".nav > li").has("a[href='#two_player_games/new']").addClass('active');
     this._swapView(twoPlayerView);
   },
 
