@@ -11,6 +11,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'newrelic_rpm'
 gem 'bootstrap-sass'
 gem 'backbone-on-rails'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'

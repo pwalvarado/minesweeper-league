@@ -100,3 +100,4 @@ gets for your opponent.
 - [ ] Friends. Follow, Unfollow.
 - [ ] Prevent post hacks to the server.
 - [ ] Implement minesweeper bot detection.
+- [ ] Leaderboard for the latest X# games in that 1P difficulty.
