@@ -98,3 +98,5 @@ gets for your opponent.
 - [ ] Never Guess variant (you can't lose if you play perfectly).
 - [ ] Game history for all variants.
 - [ ] Friends. Follow, Unfollow.
+- [ ] Prevent post hacks to the server.
+- [ ] Implement minesweeper bot detection.
