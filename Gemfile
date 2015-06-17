@@ -12,6 +12,7 @@ gem 'newrelic_rpm'
 gem 'bootstrap-sass'
 gem 'backbone-on-rails'
 gem 'figaro'
+gem 'pusher'
 
 group :development, :test do
   gem 'byebug'
