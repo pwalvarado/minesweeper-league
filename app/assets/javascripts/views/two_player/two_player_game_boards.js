@@ -59,6 +59,9 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
         });
       that.theirGameView.render();
     });
+
+    this.channel.bind('client-uLost', function () {
+    });
   },
 
 });

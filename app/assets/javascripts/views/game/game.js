@@ -36,8 +36,12 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
 
     this.listenTo(this.cells, 'gameWon', function () {
       this.gameHeaderView.timerView.timer.stop();
+      // Single Player Main View catches this trigger
       this.trigger('bestTime', this.gameHeaderView.timerView.timer.previousRun,
         this.determineLevel());
+
+      // Two Player Main View catches this trigger
+      this.trigger('iWon');
     });
   },
 

@@ -15,6 +15,15 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
     this.activateListener();
   },
 
+  render: function () {
+    this.$el.empty();
+    this.$el.append(this.gameOptionsView.render().$el);
+    this.$el.append(this.gameView.render().$el);
+    this.$el.append(this.leaderboardsView.render().$el);
+
+    return this;
+  },
+
   activateListener: function () {
     // the 'bestTime' and 'level' function arguments are passed in on trigger()
     this.listenTo(this.gameView, 'bestTime', function (bestTime, level) {
@@ -26,15 +35,6 @@ MinesweeperLeague.Views.Main = Backbone.View.extend({
 
       $('body').prepend(this.bestTimeModalForm.render().$el);
     });
-  },
-
-  render: function () {
-    this.$el.empty();
-    this.$el.append(this.gameOptionsView.render().$el);
-    this.$el.append(this.gameView.render().$el);
-    this.$el.append(this.leaderboardsView.render().$el);
-
-    return this;
   },
 
   events: {
