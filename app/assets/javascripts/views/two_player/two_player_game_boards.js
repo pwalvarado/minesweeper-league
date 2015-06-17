@@ -18,10 +18,12 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
 
   className: 'two-player-game-boards-row row',
 
+  template: JST['two_player/two_player_game_boards'],
+
   render: function () {
-    this.$el.empty();
-    this.$el.append(this.myGameView.render().$el);
-    this.$el.append(this.theirGameView.render().$el);
+    this.$el.html(this.template());
+    this.$el.find('.my-board').append(this.myGameView.render().$el);
+    this.$el.find('.their-board').append(this.theirGameView.render().$el);
 
     return this;
   },
