@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require bootstrap
+//= require serializejson
 //= require minesweeper_league
 //= require_tree ../templates
 //= require_tree ./models
@@ -21,5 +23,3 @@
 //= require_tree ./views
 //= require_tree ./routers
 //= require_tree .
-//= require bootstrap
-//= require serializejson

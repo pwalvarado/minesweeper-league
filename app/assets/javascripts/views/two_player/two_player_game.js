@@ -4,7 +4,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.gameId = options.gameId;
     this.pusher = new Pusher(window.pusherKey);
     this.channel = this.pusher.subscribe('presence-' + this.gameId);
-    bindChannelEvents();
+    this.bindChannelEvents();
 
     this.myGameView = new MinesweeperLeague.Views.Game({
       dimX: 30, dimY: 16, numMines: 99
@@ -30,13 +30,32 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     'click .cell': 'cellClicked'
   },
 
-  cellClicked: function () {
-    this.channel.trigger('test');
+  cellClicked: function (e) {
+    this.channel.trigger('client-opponentClicked', {
+      cellLikeArray: this.myGameView.cells,
+    });
   },
 
   bindChannelEvents: function () {
-    this.channel.bind('opponentClicked', function (data) {
-      console.log("I'm in the test function");
+    var that = this;
+
+    this.channel.bind('client-opponentClicked', function (data) {
+      var cells = [];
+
+      data.cellLikeArray.forEach(function (cellLikeObj) {
+        var cell = new MinesweeperLeague.Models.Cell(cellLikeObj);
+
+        cells.push(cell);
+      });
+
+      that.theirGameView.gameBoardView =
+        new MinesweeperLeague.Views.GameBoard({
+          collection:
+            new MinesweeperLeague.Collections.Cells(cells, {
+              numMines: 99, numCells: 480
+            })
+        });
+      that.theirGameView.render();
     });
   },
 
