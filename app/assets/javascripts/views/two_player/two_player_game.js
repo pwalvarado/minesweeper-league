@@ -18,7 +18,6 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   template: JST['two_player/two_player_game'],
 
   render: function () {
-    debugger;
     this.$el.html(this.template());
     this.$el.children().append(this.twoPlayerGameHeaderView.render().$el);
     this.$el.children().append(this.twoPlayerGameBoardsView.render().$el);
