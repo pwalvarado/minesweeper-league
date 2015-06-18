@@ -21,7 +21,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template());
-    this.$el.children().append(this.twoPlayerGameHeaderView.render().$el);
+    // this.$el.children().append(this.twoPlayerGameHeaderView.render().$el);
     this.$el.children().append(this.twoPlayerGameBoardsView.render().$el);
 
     return this;
