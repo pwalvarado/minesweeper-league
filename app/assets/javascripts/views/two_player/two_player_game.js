@@ -15,7 +15,12 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
         dimX: options.dimX, dimY: options.dimY, numMines: options.numMines
       });
 
-    this.activateListener();
+    // Turn off their board's functionality
+    this.twoPlayerGameBoardsView.theirGameView.stopListening();
+    this.twoPlayerGameBoardsView.theirGameView.undelegateEvents();
+    this.twoPlayerGameBoardsView.theirGameView.gameBoardView.stopListening();
+
+    this.activateListeners();
   },
 
   className: 'two-player-game-row row',
@@ -38,13 +43,26 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.twoPlayerGamePreGameView.$el.replaceWith(
       this.twoPlayerGameHeaderView.render().$el);
 
-    this.twoPlayerGameHeaderView.timer.start();
+    this.startCountdown();
   },
 
-  activateListener: function () {
+  activateListeners: function () {
     this.listenTo(this.twoPlayerGameBoardsView.myGameView, 'iWon', function () {
       this.twoPlayerGameBoardsView.channel.trigger('client-uLost', {});
     });
+
+    this.listenTo(this, 'countdownFinished', function () {
+      this.twoPlayerGameHeaderView.timer.start();
+      this.enableYourBoard();
+    });
+  },
+
+  startCountdown: function () {
+
+  },
+
+  enableYourBoard: function () {
+
   },
 
 });

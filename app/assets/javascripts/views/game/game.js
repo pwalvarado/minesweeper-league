@@ -57,7 +57,7 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
 
   events: {
     'click .reset': 'reset',
-    // mousedown to prevent conflict with 'gameOver' listener, immediate reset.
+    // mousedown prevents conflict with the 'gameOver' listener.
     'mousedown .cell': 'startTimer'
   },
 
