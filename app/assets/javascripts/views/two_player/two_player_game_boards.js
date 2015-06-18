@@ -57,9 +57,9 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
               numMines: 99, numCells: 480
             })
         });
-      that.theirGameView.gameBoardView.stopListening();
       that.theirGameView.render();
-
+      that.theirGameView.gameBoardView.stopListening();
+      that.theirGameView.gameHeaderView.$el.find('.reset').addClass('disabled');
     });
 
     this.channel.bind('client-uLost', function () {
