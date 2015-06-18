@@ -3,6 +3,9 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   initialize: function (options) {
     this.gameId = options.gameId;
 
+    this.twoPlayerGamePreGameView =
+      new MinesweeperLeague.Views.TwoPlayerPreGame();
+
     this.twoPlayerGameHeaderView =
       new MinesweeperLeague.Views.TwoPlayerGameHeader();
 
@@ -21,10 +24,21 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template());
-    // this.$el.children().append(this.twoPlayerGameHeaderView.render().$el);
+    this.$el.children().append(this.twoPlayerGamePreGameView.render().$el);
     this.$el.children().append(this.twoPlayerGameBoardsView.render().$el);
 
     return this;
+  },
+
+  events: {
+    'click .start-btn': 'startGame',
+  },
+
+  startGame: function () {
+    this.twoPlayerGamePreGameView.$el.replaceWith(
+      this.twoPlayerGameHeaderView.render().$el);
+
+    this.twoPlayerGameHeaderView.timer.start();
   },
 
   activateListener: function () {

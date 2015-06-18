@@ -21,6 +21,6 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
 
     return this;
   },
-  
+
 
 });
