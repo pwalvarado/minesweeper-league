@@ -33,7 +33,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
         .append(this.twoPlayerPreGameBoardsView.render().$el);
     } else {
       this.$el.html(this.template());
-      this.$el.find('.your-board').append(this.myGameView.render().$el);
+      this.$el.find('.my-board').append(this.myGameView.render().$el);
       this.$el.find('.opponent-board').append(this.theirGameView.render().$el);
       this.theirGameView.gameHeaderView.$el
         .find('.reset').addClass('disabled');
@@ -54,7 +54,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
 
   activateListeners: function () {
     this.listenTo(this.myGameView, 'iWon', function () {
-      this.twoPlayerGameBoardsView.channel.trigger('client-uLost', {});
+      this.channel.trigger('client-uLost', {});
 
       this.winTwoPlayerGame();
     });
@@ -94,21 +94,18 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
     }.bind(this));
 
     this.channel.bind('client-uLost', function () {
-    });
+      this.loseTwoPlayerGame();
+    }.bind(this));
   },
 
   winTwoPlayerGame: function () {
-    this.twoPlayerEndOfGameModalView =
-      new MinesweeperLeague.Views.TwoPlayerEndModal({ message: "You Win" });
-
-    this.$el.append(this.twoPlayerEndOfGameModalView.render().$el);
+    this.$el.find('.my-board.well').addClass('two-player-winner');
+    this.$el.find('.opponent-board.well').addClass('two-player-loser');
   },
 
-  lostTwoPlayerGame: function() {
-    this.twoPlayerEndOfGameModalView =
-      new MinesweeperLeague.Views.TwoPlayerEndModal({ message: "You Lose" });
-
-    this.$el.append(this.twoPlayerEndOfGameModalView.render().$el);
+  loseTwoPlayerGame: function() {
+    this.$el.find('.my-board.well').addClass('two-player-loser');
+    this.$el.find('.opponent-board.well').addClass('two-player-winner');
   },
 
 });
