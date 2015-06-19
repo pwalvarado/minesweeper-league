@@ -14,6 +14,9 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
       dimX: options.dimX, dimY: options.dimY, numMines: options.numMines
     });
 
+    this.twoPlayerPreStartView =
+      new MinesweeperLeague.Views.TwoPlayerPreStart();
+
   },
 
   className: 'two-player-game-boards-row row',
@@ -21,9 +24,16 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
   template: JST['two_player/two_player_game_boards'],
 
   render: function () {
-    this.$el.html(this.template());
-    this.$el.find('.your-board').append(this.myGameView.render().$el);
-    this.$el.find('.opponent-board').append(this.theirGameView.render().$el);
+    if (!this.playing) {
+      this.$el.html(this.template());
+      this.$el.find('.boards-wrapper-row').empty();
+      this.$el.find('.boards-wrapper-row')
+        .append(this.twoPlayerPreStartView.render().$el);
+    } else {
+      this.$el.html(this.template());
+      this.$el.find('.your-board').append(this.myGameView.render().$el);
+      this.$el.find('.opponent-board').append(this.theirGameView.render().$el);
+    }
 
     return this;
   },
