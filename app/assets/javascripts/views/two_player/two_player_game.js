@@ -37,6 +37,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
   events: {
     'click .start-btn': 'waitOrStart',
+    'click .rematch-btn': 'rematch',
   },
 
   waitOrStart: function () {
@@ -75,4 +76,23 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
     }.bind(this), 1000);
   },
+
+  rematch: function () {
+    this.$el.find('.btn').text('Waiting for opponent...').addClass('disabled');
+
+    if (this.opponentRematchReady) {
+      if (!this.waitingForRematch) {
+        this.twoPlayerGameBoardsView
+          .channel.trigger('client-bothRematchReady', {});
+      }
+
+      this.trigger('bothRematchReady');
+    } else {
+      this.twoPlayerGameBoardsView
+        .channel.trigger('client-opponentRematchReady', {});
+
+      this.waitingForRematch = true;
+    }
+  },
+
 });
