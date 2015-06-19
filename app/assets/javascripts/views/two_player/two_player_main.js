@@ -15,8 +15,9 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
     });
 
     this.listenToOnce(this.twoPlayerGameView, 'bothRematchReady', function () {
-      // Unlisten to stuff.
+      // Unlisten to stuff. Unbind stuff.
       this.twoPlayerGameView.twoPlayerGameBoardsView.stopListening();
+      this.twoPlayerGameView.off();
 
       this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
         gameId: this.gameId,

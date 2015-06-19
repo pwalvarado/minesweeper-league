@@ -81,9 +81,6 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   },
 
   rematch: function () {
-    this.$el.find('.rematch-btn.btn')
-      .text('Waiting for opponent...').addClass('disabled');
-
     if (this.opponentRematchReady) {
       if (!this.waitingForRematch) {
         this.channel.trigger('client-bothRematchReady', {});
@@ -91,6 +88,9 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
       this.trigger('bothRematchReady');
     } else {
+      this.$el.find('.rematch-btn.btn')
+        .text('Waiting for opponent...').addClass('disabled');
+
       this.channel.trigger('client-opponentRematchReady', {});
 
       this.waitingForRematch = true;
