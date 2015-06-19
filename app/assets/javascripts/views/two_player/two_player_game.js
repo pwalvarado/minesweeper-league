@@ -37,10 +37,10 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   },
 
   events: {
-    'click .start-btn': 'waitOrStartGame',
+    'click .start-btn': 'waitOrStart',
   },
 
-  waitOrStartGame: function () {
+  waitOrStart: function () {
     if (this.opponentReady) {
       if (!this.waiting) {
         this.twoPlayerGameBoardsView.channel.trigger('client-bothReady', {});
@@ -49,7 +49,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
       this.twoPlayerGamePreGameView.$el.replaceWith(
         this.twoPlayerGameHeaderView.render().$el);
 
-      this.startCountdownThenGame();
+      this.countdownThenPlay();
     } else {
       this.twoPlayerGamePreGameView.$el.find('.btn')
         .text('Waiting for opponent...').addClass('disabled');
@@ -65,7 +65,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     });
   },
 
-  startCountdownThenGame: function () {
+  countdownThenPlay: function () {
     var num = 3;
 
     var countDown = setInterval(function () {
