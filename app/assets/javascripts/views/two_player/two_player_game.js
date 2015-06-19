@@ -60,11 +60,18 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   },
 
   startCountdown: function () {
+    var num = 3;
 
-  },
+    var countDown = setInterval(function () {
+      if (num === 0) { clearInterval(countDown); }
 
-  enableYourBoard: function () {
+      this.twoPlayerGameBoardsView.twoPlayerPreStartView.$el.html(
+        'The game will begin in ' + num);
+      num -= 1;
 
+    }.bind(this), 1000);
+
+      
   },
 
 });
