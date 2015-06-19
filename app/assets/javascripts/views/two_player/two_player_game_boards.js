@@ -2,9 +2,9 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
 
   initialize: function (options) {
     this.gameId = options.gameId;
+    this.pusher = options.pusher;
+    this.channel = options.channel;
     this.twoPlayerGameView = options.twoPlayerGameView;
-    this.pusher = new Pusher(window.pusherKey);
-    this.channel = this.pusher.subscribe('presence-' + this.gameId);
     this.bindChannelEvents();
 
     this.myGameView = new MinesweeperLeague.Views.Game({

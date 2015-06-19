@@ -2,16 +2,22 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
 
   initialize: function (options) {
     this.gameId = options.gameId;
+    this.pusher = new Pusher(window.pusherKey);
+    this.channel = this.pusher.subscribe('presence-' + this.gameId);
 
     this.twoPlayerDirectionsView =
       new MinesweeperLeague.Views.TwoPlayerDirections();
 
     this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
       gameId: this.gameId,
+      pusher: this.pusher, channel: this.channel,
       dimX: 9, dimY: 9, numMines: 10
     });
 
-    this.listenTo(this.twoPlayerGameView, 'bothRematchReady', function () {
+    this.listenToOnce(this.twoPlayerGameView, 'bothRematchReady', function () {
+      // Unlisten to stuff.
+      this.twoPlayerGameView.twoPlayerGameBoardsView.stopListening();
+
       this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
         gameId: this.gameId,
         dimX: 9, dimY: 9, numMines: 10

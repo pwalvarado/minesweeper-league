@@ -2,6 +2,8 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
   initialize: function (options) {
     this.gameId = options.gameId;
+    this.pusher = options.pusher;
+    this.channel = options.channel;
 
     this.twoPlayerGamePreGameHeaderView =
       new MinesweeperLeague.Views.TwoPlayerPreGameHeader();
@@ -13,6 +15,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.twoPlayerGameBoardsView =
       new MinesweeperLeague.Views.TwoPlayerGameBoards({
         gameId: this.gameId,
+        pusher: this.pusher, channel: this.channel,
         twoPlayerGameView: this,
         dimX: options.dimX, dimY: options.dimY, numMines: options.numMines
       });
@@ -43,7 +46,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   waitOrStart: function () {
     if (this.opponentReady) {
       if (!this.waiting) {
-        this.twoPlayerGameBoardsView.channel.trigger('client-bothReady', {});
+        this.channel.trigger('client-bothReady', {});
       }
 
       this.twoPlayerGamePreGameHeaderView.$el.replaceWith(
@@ -54,7 +57,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
       this.twoPlayerGamePreGameHeaderView.$el.find('.btn')
         .text('Waiting for opponent...').addClass('disabled');
 
-      this.twoPlayerGameBoardsView.channel.trigger('client-oneReady', {});
+      this.channel.trigger('client-oneReady', {});
       this.waiting = true;
     }
   },
@@ -78,18 +81,17 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   },
 
   rematch: function () {
-    this.$el.find('.btn').text('Waiting for opponent...').addClass('disabled');
+    this.$el.find('.rematch-btn.btn')
+      .text('Waiting for opponent...').addClass('disabled');
 
     if (this.opponentRematchReady) {
       if (!this.waitingForRematch) {
-        this.twoPlayerGameBoardsView
-          .channel.trigger('client-bothRematchReady', {});
+        this.channel.trigger('client-bothRematchReady', {});
       }
 
       this.trigger('bothRematchReady');
     } else {
-      this.twoPlayerGameBoardsView
-        .channel.trigger('client-opponentRematchReady', {});
+      this.channel.trigger('client-opponentRematchReady', {});
 
       this.waitingForRematch = true;
     }
