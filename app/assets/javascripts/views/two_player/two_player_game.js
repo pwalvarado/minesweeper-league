@@ -7,8 +7,6 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
     this.twoPlayerGamePreGameHeaderView =
       new MinesweeperLeague.Views.TwoPlayerPreGameHeader();
-    this.twoPlayerGameHeaderView =
-      new MinesweeperLeague.Views.TwoPlayerGameHeader();
 
     this.twoPlayerGameBoardsView =
       new MinesweeperLeague.Views.TwoPlayerGameBoards({
@@ -46,8 +44,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
         this.channel.trigger('client-bothReady', {});
       }
 
-      this.twoPlayerGamePreGameHeaderView.$el.replaceWith(
-        this.twoPlayerGameHeaderView.render().$el);
+      this.twoPlayerGamePreGameHeaderView.$el.remove();
 
       this.countdownThenPlay();
     } else {
@@ -66,7 +63,6 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
       if (num === 0) {
         clearInterval(countDown);
         this.twoPlayerGameBoardsView.playing = true;
-        this.twoPlayerGameHeaderView.timer.start();
         this.twoPlayerGameBoardsView.render();
       }
 
