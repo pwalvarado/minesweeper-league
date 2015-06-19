@@ -9,5 +9,4 @@ MinesweeperLeague.Views.TwoPlayerPreGame = Backbone.View.extend({
 
     return this;
   },
-
 });

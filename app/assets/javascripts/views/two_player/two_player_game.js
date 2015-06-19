@@ -12,6 +12,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.twoPlayerGameBoardsView =
       new MinesweeperLeague.Views.TwoPlayerGameBoards({
         gameId: this.gameId,
+        twoPlayerGameView: this,
         dimX: options.dimX, dimY: options.dimY, numMines: options.numMines
       });
 
@@ -36,14 +37,26 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   },
 
   events: {
-    'click .start-btn': 'startGame',
+    'click .start-btn': 'waitOrStartGame',
   },
 
-  startGame: function () {
-    this.twoPlayerGamePreGameView.$el.replaceWith(
-      this.twoPlayerGameHeaderView.render().$el);
+  waitOrStartGame: function () {
+    if (this.opponentReady) {
+      if (!this.waiting) {
+        this.twoPlayerGameBoardsView.channel.trigger('client-bothReady', {});
+      }
 
-    this.startCountdownThenGame();
+      this.twoPlayerGamePreGameView.$el.replaceWith(
+        this.twoPlayerGameHeaderView.render().$el);
+
+      this.startCountdownThenGame();
+    } else {
+      this.twoPlayerGamePreGameView.$el.find('.btn')
+        .text('Waiting for opponent...').addClass('disabled');
+
+      this.twoPlayerGameBoardsView.channel.trigger('client-oneReady', {});
+      this.waiting = true;
+    }
   },
 
   activateListeners: function () {

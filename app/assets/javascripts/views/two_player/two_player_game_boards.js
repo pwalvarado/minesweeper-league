@@ -2,6 +2,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
 
   initialize: function (options) {
     this.gameId = options.gameId;
+    this.twoPlayerGameView = options.twoPlayerGameView;
     this.pusher = new Pusher(window.pusherKey);
     this.channel = this.pusher.subscribe('presence-' + this.gameId);
     this.bindChannelEvents();
@@ -72,6 +73,15 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
       that.theirGameView.gameBoardView.stopListening();
       that.theirGameView.gameHeaderView.$el.find('.reset').addClass('disabled');
     });
+
+    this.channel.bind('client-oneReady', function () {
+      this.twoPlayerGameView.opponentReady = true;
+    }.bind(this));
+
+    this.channel.bind('client-bothReady', function () {
+      this.twoPlayerGameView.opponentReady = true;
+      this.twoPlayerGameView.waitOrStartGame();
+    }.bind(this));
 
     this.channel.bind('client-uLost', function () {
     });
