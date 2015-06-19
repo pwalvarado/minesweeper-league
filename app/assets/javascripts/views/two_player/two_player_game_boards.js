@@ -84,15 +84,6 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
       that.theirGameView.gameHeaderView.$el.find('.reset').addClass('disabled');
     });
 
-    this.channel.bind('client-oneReady', function () {
-      this.twoPlayerGameView.opponentReady = true;
-    }.bind(this));
-
-    this.channel.bind('client-bothReady', function () {
-      this.twoPlayerGameView.opponentReady = true;
-      this.twoPlayerGameView.waitOrStart();
-    }.bind(this));
-
     this.channel.bind('client-uLost', function () {
       this.loseTwoPlayerGame();
     }.bind(this));

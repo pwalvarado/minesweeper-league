@@ -20,6 +20,8 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.twoPlayerGameBoardsView.theirGameView.stopListening();
     this.twoPlayerGameBoardsView.theirGameView.undelegateEvents();
     this.twoPlayerGameBoardsView.theirGameView.gameBoardView.stopListening();
+
+    this.bindChannelEvents();
   },
 
   className: 'two-player-game-row row',
@@ -36,6 +38,18 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
   events: {
     'click .start-btn': 'waitOrStart',
+  },
+
+  bindChannelEvents: function () {
+    this.channel.bind('client-oneReady', function () {
+      this.opponentReady = true;
+    }.bind(this));
+
+    this.channel.bind('client-bothReady', function () {
+      this.opponentReady = true;
+      this.waitOrStart();
+    }.bind(this));
+
   },
 
   waitOrStart: function () {
