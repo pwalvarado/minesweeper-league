@@ -16,7 +16,6 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
 
     this.twoPlayerPreStartView =
       new MinesweeperLeague.Views.TwoPlayerPreStart();
-
   },
 
   className: 'two-player-game-boards-row row',
@@ -33,6 +32,8 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
       this.$el.html(this.template());
       this.$el.find('.your-board').append(this.myGameView.render().$el);
       this.$el.find('.opponent-board').append(this.theirGameView.render().$el);
+      this.theirGameView.gameHeaderView.$el
+        .find('.reset').addClass('disabled');
     }
 
     return this;
