@@ -16,7 +16,8 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
         dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
       }), { numMines: this.numMines, numCells: this.dimX * this.dimY });
     this.gameBoardView = new MinesweeperLeague.Views.GameBoard({
-      collection: this.cells
+      collection: this.cells,
+      dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
     });
 
     this.listenTo(this.cells, 'gameOver', function () {
@@ -62,19 +63,8 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
   },
 
   reset: function () {
-    this.gameBoardView.removeSubviews();
-    this.gameBoardView.collection.reset(MinesweeperLeague.generateCells({
-      dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
-    }));
-    this.gameBoardView.collection.gameOver = false;
-    this.gameBoardView.collection.allMinesRevealed = false;
-    this.gameBoardView.collection.revealedCells = 0;
-    this.gameBoardView.activateListeners();
-    this.gameHeaderView.timerView.timer.stop();
-    this.gameHeaderView.mineCountView.minesRemaining = this.numMines;
-    this.gameHeaderView.mineCountView.render();
-    this.gameBoardView.collateSubviewGrid();
-    this.gameBoardView.render();
+    this.gameBoardView.reset();
+    this.gameHeaderView.reset();
   },
 
   startTimer: function () {

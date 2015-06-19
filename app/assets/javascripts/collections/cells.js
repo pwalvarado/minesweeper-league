@@ -29,4 +29,10 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
     this.allMinesRevealed = true;
   },
 
+  constantsReset: function () {
+    this.gameOver = false;
+    this.allMinesRevealed = false;
+    this.revealedCells = 0;
+  },
+
 });
