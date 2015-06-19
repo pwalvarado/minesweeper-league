@@ -45,7 +45,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.twoPlayerGamePreGameView.$el.replaceWith(
       this.twoPlayerGameHeaderView.render().$el);
 
-    this.startCountdown();
+    this.startCountdownAndGame();
   },
 
   activateListeners: function () {
@@ -59,11 +59,15 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     });
   },
 
-  startCountdown: function () {
+  startCountdownAndGame: function () {
     var num = 3;
 
     var countDown = setInterval(function () {
-      if (num === 0) { clearInterval(countDown); }
+      if (num === 0) {
+        clearInterval(countDown);
+        this.twoPlayerGameBoardsView.playing = true;
+        this.twoPlayerGameBoardsView.render();
+      }
 
       this.twoPlayerGameBoardsView.twoPlayerPreStartView.$el.html(
         'The game will begin in ' + num);
@@ -71,7 +75,6 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
     }.bind(this), 1000);
 
-      
   },
 
 });
