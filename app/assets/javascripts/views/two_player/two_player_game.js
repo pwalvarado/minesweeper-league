@@ -9,8 +9,6 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
       new MinesweeperLeague.Views.TwoPlayerPreGameHeader();
     this.twoPlayerGameHeaderView =
       new MinesweeperLeague.Views.TwoPlayerGameHeader();
-    this.twoPlayerPostGameHeaderView =
-      new MinesweeperLeague.Views.TwoPlayerPostGameHeader();
 
     this.twoPlayerGameBoardsView =
       new MinesweeperLeague.Views.TwoPlayerGameBoards({
@@ -40,7 +38,6 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
   events: {
     'click .start-btn': 'waitOrStart',
-    'click .rematch-btn': 'rematch',
   },
 
   waitOrStart: function () {
@@ -54,7 +51,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
       this.countdownThenPlay();
     } else {
-      this.twoPlayerGamePreGameHeaderView.$el.find('.btn')
+      this.twoPlayerGamePreGameHeaderView.$el.find('.start-btn')
         .text('Waiting for opponent...').addClass('disabled');
 
       this.channel.trigger('client-oneReady', {});
@@ -78,23 +75,6 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
       num -= 1;
 
     }.bind(this), 1000);
-  },
-
-  rematch: function () {
-    if (this.opponentRematchReady) {
-      if (!this.waitingForRematch) {
-        this.channel.trigger('client-bothRematchReady', {});
-      }
-
-      this.trigger('bothRematchReady');
-    } else {
-      this.$el.find('.rematch-btn.btn')
-        .text('Waiting for opponent...').addClass('disabled');
-
-      this.channel.trigger('client-opponentRematchReady', {});
-
-      this.waitingForRematch = true;
-    }
   },
 
 });
