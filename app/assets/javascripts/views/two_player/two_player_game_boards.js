@@ -101,11 +101,17 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
   winTwoPlayerGame: function () {
     this.$el.find('.my-board.well').addClass('two-player-winner');
     this.$el.find('.opponent-board.well').addClass('two-player-loser');
+
+    this.twoPlayerGameView.twoPlayerGameHeaderView.$el.replaceWith(
+      this.twoPlayerGameView.twoPlayerPostGameHeaderView.render().$el);
   },
 
   loseTwoPlayerGame: function() {
     this.$el.find('.my-board.well').addClass('two-player-loser');
     this.$el.find('.opponent-board.well').addClass('two-player-winner');
+
+    this.twoPlayerGameView.twoPlayerGameHeaderView.$el.replaceWith(
+      this.twoPlayerGameView.twoPlayerPostGameHeaderView.render().$el);
   },
 
 });

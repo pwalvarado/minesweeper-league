@@ -5,9 +5,10 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
     this.twoPlayerGamePreGameHeaderView =
       new MinesweeperLeague.Views.TwoPlayerPreGameHeader();
-
     this.twoPlayerGameHeaderView =
       new MinesweeperLeague.Views.TwoPlayerGameHeader();
+    this.twoPlayerPostGameHeaderView =
+      new MinesweeperLeague.Views.TwoPlayerPostGameHeader();
 
     this.twoPlayerGameBoardsView =
       new MinesweeperLeague.Views.TwoPlayerGameBoards({
