@@ -13,7 +13,7 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
       pusher: this.pusher, channel: this.channel,
       dimX: 9, dimY: 9, numMines: 10
     });
-    
+
   },
 
   className: 'two-player-main container',

@@ -9,7 +9,7 @@ class PusherController < ApplicationController
       render :json => response
     else # Let guests use it too
       response = Pusher[params[:channel_name]].authenticate(params[:socket_id],
-        { :user_id => 0 })
+        { :user_id => SecureRandom.urlsafe_base64 })
 
       render :json => response
     end

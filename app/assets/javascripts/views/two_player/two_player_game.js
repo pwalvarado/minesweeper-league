@@ -5,8 +5,10 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.pusher = options.pusher;
     this.channel = options.channel;
 
-    this.twoPlayerGamePreGameHeaderView =
-      new MinesweeperLeague.Views.TwoPlayerPreGameHeader();
+    this.twoPlayerPreGameHeaderView =
+      new MinesweeperLeague.Views.TwoPlayerPreGameHeader({
+        pusher: this.pusher, channel: this.channel
+      });
 
     this.twoPlayerGameBoardsView =
       new MinesweeperLeague.Views.TwoPlayerGameBoards({
@@ -30,7 +32,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template());
-    this.$el.children().append(this.twoPlayerGamePreGameHeaderView.render().$el);
+    this.$el.children().append(this.twoPlayerPreGameHeaderView.render().$el);
     this.$el.children().append(this.twoPlayerGameBoardsView.render().$el);
 
     return this;
@@ -58,11 +60,11 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
         this.channel.trigger('client-bothReady', {});
       }
 
-      this.twoPlayerGamePreGameHeaderView.$el.remove();
+      this.twoPlayerPreGameHeaderView.$el.remove();
 
       this.countdownThenPlay();
     } else {
-      this.twoPlayerGamePreGameHeaderView.$el.find('.start-btn')
+      this.twoPlayerPreGameHeaderView.$el.find('.start-btn')
         .text('Waiting for opponent...').addClass('disabled');
 
       this.channel.trigger('client-oneReady', {});
