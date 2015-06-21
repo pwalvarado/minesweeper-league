@@ -14,6 +14,7 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
       dimX: 9, dimY: 9, numMines: 10
     });
 
+    this.activateListeners();
   },
 
   className: 'two-player-main container',
@@ -24,6 +25,15 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
     this.$el.append(this.twoPlayerGameView.render().$el);
 
     return this;
+  },
+
+  activateListeners: function () {
+    this.listenTo(this.twoPlayerGameView, 'gameConcluded', function () {
+      this.$el.append($('<div>').addClass('rematch-row row').html(
+        $('<button>').addClass('btn btn-primary col-md-2 col-md-offset-5')
+          .html('Rematch?')
+      ));
+    });
   },
 
 });
