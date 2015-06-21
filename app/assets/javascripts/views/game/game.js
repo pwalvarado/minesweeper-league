@@ -10,43 +10,21 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.cellModels = MinesweeperLeague.generateCells({
       dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
     });
-    this.cellsCollection = new MinesweeperLeague.Collections.Cells(
+    this.collection = new MinesweeperLeague.Collections.Cells(
       this.cellModels, { numMines: this.numMines }
     );
 
     this.gameHeaderView = new MinesweeperLeague.Views.GameHeader({
-      collection: this.cellsCollection,
+      collection: this.collection,
+      gameView: this,
       numMines: this.numMines
     });
     this.gameBoardView = new MinesweeperLeague.Views.GameBoard({
-      collection: this.cellsCollection,
+      collection: this.collection,
       dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
     });
 
-    this.listenTo(this.cellsCollection, 'gameOver', function () {
-      this.gameHeaderView.timer.stop();
-      this.started = false;
-    });
-
-    this.listenTo(this.cellsCollection, 'change:flagged', function (model, value) {
-      if (value) {
-        this.gameHeaderView.minesRemaining -= 1;
-      } else {
-        this.gameHeaderView.minesRemaining += 1;
-      }
-
-
-    });
-
-    this.listenTo(this.cellsCollection, 'gameWon', function () {
-      this.gameHeaderView.timer.stop();
-      // Single Player Main View catches this trigger
-      this.trigger('bestTime', this.gameHeaderView.timer.previousRun,
-        this.determineLevel());
-
-      // Two Player Main View catches this trigger
-      this.trigger('iWon');
-    });
+    this.activateListeners();
   },
 
   className: 'game row center-block',
@@ -61,7 +39,7 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
 
   events: {
     'click .reset': 'reset',
-    // mousedown prevents conflict with the 'gameOver' listener.
+    // mousedown prevents conflicts with the 'gameOver' listener.
     'mousedown .cell': 'startTimer'
   },
 
@@ -69,16 +47,15 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.cellModels = MinesweeperLeague.generateCells({
       dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
     });
+    this.collection.reset(this.cellModels);
+    this.collection.constantsReset();
 
-    this.gameBoardView.reset(this.cellsCollection);
-    this.gameHeaderView.reset(this.cellsCollection);
+    this.gameBoardView.reset(this.collection);
+    this.gameHeaderView.reset(this.collection);
   },
 
   startTimer: function () {
-    if (!this.started && !this.gameBoardView.collection.allMinesRevealed) {
-      this.started = true;
-      this.gameHeaderView.timer.start();
-    }
+    this.gameHeaderView.startTimer();
   },
 
   determineLevel: function () {
@@ -98,6 +75,23 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     }
 
     this.$el.addClass('custom');
-  }
+  },
+
+  activateListeners: function () {
+    this.listenTo(this.collection, 'gameOver', function () {
+      this.gameHeaderView.timer.stop();
+      this.playing = false;
+    });
+
+    this.listenTo(this.collection, 'gameWon', function () {
+      this.gameHeaderView.timer.stop();
+      // Single Player Main View catches this trigger
+      this.trigger('bestTime', this.gameHeaderView.timer.currentTime(),
+        this.determineLevel());
+
+      // Two Player Main View catches this trigger
+      this.trigger('iWon');
+    });
+  },
 
 });

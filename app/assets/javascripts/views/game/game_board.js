@@ -6,7 +6,7 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
     this.numMines = options.numMines;
 
     this.collateSubviewGrid();
-    this.activateChangeListener();
+    this.activateListeners();
   },
 
   className: "game-board row",
@@ -23,14 +23,11 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
 
   reset: function (newCellCollection) {
     this.removeSubviews();
-    this.collection.reset(newCellCollection);
     this.collateSubviewGrid();
-    this.collection.constantsReset();
-    this.activateChangeListener();
     this.render();
   },
 
-  activateChangeListener: function () {
+  activateListeners: function () {
     this.listenTo(this.collection, 'change:revealed change:flagged',
       function (model) {
         if (this.collection.allMinesRevealed) { this.stopListening(); return; }
