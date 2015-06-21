@@ -13,9 +13,17 @@
    user-select: none;
    cursor: default;
    line-height: 14px;
-   padding-left: 2px;
+   padding-left: 3px;
    font-size: 12px;
    font-weight: bold;
+   position: relative;
+}
+
+.cell > img {
+  position: absolute;
+  height: 15px;
+  top: -1px;
+  left: -1px;
 }
 
 .beginner {

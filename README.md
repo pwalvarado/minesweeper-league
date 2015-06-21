@@ -101,3 +101,6 @@ gets for your opponent.
 - [ ] Prevent post hacks to the server.
 - [ ] Implement minesweeper bot detection.
 - [ ] Leaderboard for the latest X# games in that 1P difficulty.
+
+##Citations:
+Land Mine by Ethan Clark from the Noun Project
