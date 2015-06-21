@@ -21,11 +21,9 @@ MinesweeperLeague.Views.GameBoard = Backbone.View.extend({
     return this;
   },
 
-  reset: function () {
+  reset: function (newCellCollection) {
     this.removeSubviews();
-    this.collection.reset(MinesweeperLeague.generateCells({
-      dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
-    }));
+    this.collection.reset(newCellCollection);
     this.collateSubviewGrid();
     this.collection.constantsReset();
     this.activateChangeListener();

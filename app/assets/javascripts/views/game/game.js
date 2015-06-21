@@ -7,38 +7,41 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
 
     this.determineLevel();
 
+    this.cellModels = MinesweeperLeague.generateCells({
+      dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
+    });
+    this.cellsCollection = new MinesweeperLeague.Collections.Cells(
+      this.cellModels, { numMines: this.numMines }
+    );
+
     this.gameHeaderView = new MinesweeperLeague.Views.GameHeader({
+      collection: this.cellsCollection,
       numMines: this.numMines
     });
-
-    this.cells = new MinesweeperLeague.Collections.Cells(
-      MinesweeperLeague.generateCells({
-        dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
-      }), { numMines: this.numMines, numCells: this.dimX * this.dimY });
     this.gameBoardView = new MinesweeperLeague.Views.GameBoard({
-      collection: this.cells,
+      collection: this.cellsCollection,
       dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
     });
 
-    this.listenTo(this.cells, 'gameOver', function () {
-      this.gameHeaderView.timerView.timer.stop();
+    this.listenTo(this.cellsCollection, 'gameOver', function () {
+      this.gameHeaderView.timer.stop();
       this.started = false;
     });
 
-    this.listenTo(this.cells, 'change:flagged', function (model, value, options) {
+    this.listenTo(this.cellsCollection, 'change:flagged', function (model, value) {
       if (value) {
-        this.gameHeaderView.mineCountView.minesRemaining -= 1;
-        this.gameHeaderView.mineCountView.render();
+        this.gameHeaderView.minesRemaining -= 1;
       } else {
-        this.gameHeaderView.mineCountView.minesRemaining += 1;
-        this.gameHeaderView.mineCountView.render();
+        this.gameHeaderView.minesRemaining += 1;
       }
+
+
     });
 
-    this.listenTo(this.cells, 'gameWon', function () {
-      this.gameHeaderView.timerView.timer.stop();
+    this.listenTo(this.cellsCollection, 'gameWon', function () {
+      this.gameHeaderView.timer.stop();
       // Single Player Main View catches this trigger
-      this.trigger('bestTime', this.gameHeaderView.timerView.timer.previousRun,
+      this.trigger('bestTime', this.gameHeaderView.timer.previousRun,
         this.determineLevel());
 
       // Two Player Main View catches this trigger
@@ -63,14 +66,18 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
   },
 
   reset: function () {
-    this.gameBoardView.reset();
-    this.gameHeaderView.reset();
+    this.cellModels = MinesweeperLeague.generateCells({
+      dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
+    });
+
+    this.gameBoardView.reset(this.cellsCollection);
+    this.gameHeaderView.reset(this.cellsCollection);
   },
 
   startTimer: function () {
     if (!this.started && !this.gameBoardView.collection.allMinesRevealed) {
       this.started = true;
-      this.gameHeaderView.timerView.timer.start();
+      this.gameHeaderView.timer.start();
     }
   },
 

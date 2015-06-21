@@ -18,7 +18,7 @@ MinesweeperLeague.Timer.prototype.stop = function () {
   }
 };
 
-MinesweeperLeague.Timer.prototype.currentTimeInSeconds = function () {
+MinesweeperLeague.Timer.prototype.currentTime = function () {
   if (this.running) {
     return Math.floor((Date.now() - this.startTime)/1000);
   } else {

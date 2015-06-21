@@ -2,7 +2,7 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
 
   initialize: function (modelArray, options) {
     this.gameOver = false;
-    this.numSafe = options.numCells - options.numMines;
+    this.numSafe = modelArray.length - options.numMines;
     this.revealedCells = 0;
   },
 
