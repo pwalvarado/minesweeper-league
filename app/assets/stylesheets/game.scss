@@ -14,6 +14,8 @@
    cursor: default;
    line-height: 14px;
    padding-left: 2px;
+   font-size: 12px;
+   font-weight: bold;
 }
 
 .beginner {
@@ -41,7 +43,7 @@
 }
 
 .mined {
-  color: orangered;
+  background-color: orangered;
   line-height: 11px;
   padding-left: 0px;
 }
