@@ -8,7 +8,7 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.determineLevel();
 
     this.gameHeaderView = new MinesweeperLeague.Views.GameHeader({
-      minesRemaining: this.numMines
+      numMines: this.numMines
     });
 
     this.cells = new MinesweeperLeague.Collections.Cells(
