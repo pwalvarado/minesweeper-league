@@ -20,6 +20,13 @@
   width: 120px;
 }
 
+// The board is so small the inner divs wrap because
+// the padding is too big: 15px
+.beginner > .game-header > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .intermediate {
   width: 232px;
 }
