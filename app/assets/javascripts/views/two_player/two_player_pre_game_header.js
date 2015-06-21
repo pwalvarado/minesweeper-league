@@ -13,7 +13,6 @@ MinesweeperLeague.Views.TwoPlayerPreGameHeader = Backbone.View.extend({
   template: JST['two_player/pre_game_header'],
 
   render: function () {
-    debugger;
     this.$el.html(this.template());
     this.channel.members.count > 1 ? this.enableButton() : this.disableButton();
 
