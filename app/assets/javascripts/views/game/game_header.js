@@ -46,4 +46,8 @@ MinesweeperLeague.Views.GameHeader = Backbone.View.extend({
     });
   },
 
+  forceQuit: function () {
+    this.remove();
+  }
+
 });

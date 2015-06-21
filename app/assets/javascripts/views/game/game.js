@@ -97,4 +97,10 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     });
   },
 
+  forceQuit: function () {
+    this.gameHeaderView.forceQuit();
+    this.gameBoardView.forceQuit();
+    this.remove();
+  },
+
 });

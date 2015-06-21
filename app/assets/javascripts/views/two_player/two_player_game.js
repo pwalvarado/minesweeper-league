@@ -43,15 +43,19 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   },
 
   bindChannelEvents: function () {
-    this.channel.bind('client-oneReady', function () {
+    this.channel.bind('client-oneReady', function bce1 () {
       this.opponentReady = true;
     }.bind(this));
 
-    this.channel.bind('client-bothReady', function () {
+    this.channel.bind('client-bothReady', function bce2 () {
       this.opponentReady = true;
       this.waitOrStart();
     }.bind(this));
+  },
 
+  unbindChannelEvents: function () {
+    this.channel.unbind('client-oneReady', bce1);
+    this.channel.unbind('client-bothReady', bce2);
   },
 
   waitOrStart: function () {
@@ -88,5 +92,12 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
 
     }.bind(this), 1000);
   },
+
+  forceQuit: function () {
+    this.twoPlayerPreGameHeaderView.forceQuit();
+    this.twoPlayerGameBoardsView.forceQuit();
+    this.unbindChannelEvents();
+    this.remove();
+  }
 
 });

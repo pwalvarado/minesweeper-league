@@ -30,4 +30,9 @@ MinesweeperLeague.Views.TwoPlayerPreGameHeader = Backbone.View.extend({
       .removeClass('disabled').addClass('btn-success')
       .html('Start');
   },
+
+  forceQuit: function () {
+    this.remove();
+  },
+
 });

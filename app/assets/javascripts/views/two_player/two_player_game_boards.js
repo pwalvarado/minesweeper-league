@@ -63,7 +63,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
   bindChannelEvents: function () {
     var that = this;
 
-    this.channel.bind('client-opponentClicked', function (data) {
+    this.channel.bind('client-opponentClicked', function bce1 (data) {
       var cells = [];
 
       data.cellLikeArray.forEach(function (cellLikeObj) {
@@ -84,9 +84,14 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
       that.theirGameView.gameHeaderView.$el.find('.reset').addClass('disabled');
     });
 
-    this.channel.bind('client-uLost', function () {
+    this.channel.bind('client-uLost', function bce2 () {
       this.loseTwoPlayerGame();
     }.bind(this));
+  },
+
+  unbindChannelEvents: function () {
+    this.channel.unbind('client-opponentClicked', bce1);
+    this.channel.unbind('client-uLost', bce2);
   },
 
   winTwoPlayerGame: function () {
@@ -99,6 +104,15 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
   loseTwoPlayerGame: function() {
     this.$el.find('.my-board.well').addClass('two-player-loser');
     this.$el.find('.opponent-board.well').addClass('two-player-winner');
+
+    this.twoPlayerGameView.trigger('gameConcluded');
+  },
+
+  forceQuit: function () {
+    this.myGameView.forceQuit();
+    this.theirGameView.forceQuit();
+    this.unbindChannelEvents();
+    this.remove();
   },
 
 });
