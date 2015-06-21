@@ -24,6 +24,10 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
     }
   },
 
+  hardReveal: function () {
+    this.set({ revealed: true });
+  },
+
   flag: function () {
     if (this.get('revealed') || this.collection.gameOver) { return; }
 
