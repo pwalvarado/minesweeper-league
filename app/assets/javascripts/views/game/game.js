@@ -50,8 +50,11 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.collection.reset(this.cellModels);
     this.collection.constantsReset();
 
-    this.gameBoardView.reset(this.collection);
-    this.gameHeaderView.reset(this.collection);
+    // Since I'm not changing the collection, I do not need to pass in
+    // this.collection. They will be pointing to the new one already
+    // since they were initialized pointing at it.
+    this.gameBoardView.reset();
+    this.gameHeaderView.reset();
   },
 
   startTimer: function () {

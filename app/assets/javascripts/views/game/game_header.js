@@ -24,8 +24,7 @@ MinesweeperLeague.Views.GameHeader = Backbone.View.extend({
     return this;
   },
 
-  reset: function (newCellCollection) {
-    this.cells = newCellCollection;
+  reset: function () {
     this.timer.stop();
     this.minesRemaining = this.numMines;
     this.render();

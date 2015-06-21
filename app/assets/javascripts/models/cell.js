@@ -22,6 +22,7 @@ MinesweeperLeague.Models.Cell = Backbone.Model.extend({
         this._revealSurroundings();
       }
     }
+    console.log(this.get('revealed'));
   },
 
   hardReveal: function () {
