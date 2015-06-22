@@ -59,8 +59,8 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
   },
 
   startTimer: function () {
-    // Only start the timer if the game is not in a playing state.
-    if (this.playing === true) { return; }
+    // Don't start timer if game ended or is currently in play.
+    if (this.playing || this.collection.gameOver) { return; }
 
     this.playing = true;
     this.headerView.startTimer();
