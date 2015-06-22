@@ -88,6 +88,10 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.twoPlayerGameBoardsView.forceQuit();
     this.unbindChannelEvents();
     this.remove();
-  }
+  },
+
+  disableMyBoard: function () {
+    this.twoPlayerGameBoardsView.disableMyBoard();
+  },
 
 });

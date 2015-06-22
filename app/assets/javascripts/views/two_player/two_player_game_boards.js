@@ -36,7 +36,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
       this.$el.find('.my-board').append(this.myGameView.render().$el);
       this.$el.find('.opponent-board').append(this.theirGameView.render().$el);
       this.theirGameView.headerView.$el
-        .find('.reset').addClass('disabled');
+        .find('.reset-btn').addClass('disabled');
     }
 
     return this;
@@ -63,7 +63,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
   bindChannelEvents: function () {
     var that = this;
 
-    this.bce1 = function (data) {
+    this.opponentClicked = function (data) {
       var cells = [];
 
       data.cellLikeArray.forEach(function (cellLikeObj) {
@@ -81,17 +81,17 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
         });
       that.theirGameView.render();
       that.theirGameView.boardView.stopListening();
-      that.theirGameView.headerView.$el.find('.reset').addClass('disabled');
+      that.theirGameView.headerView.$el.find('.reset-btn').addClass('disabled');
     }
-    this.channel.bind('client-opponentClicked', this.bce1);
+    this.channel.bind('client-opponentClicked', this.opponentClicked);
 
-    this.bce2 = function () { that.loseTwoPlayerGame(); }
-    this.channel.bind('client-uLost', this.bce2);
+    this.uLost = function () { that.loseTwoPlayerGame(); }
+    this.channel.bind('client-uLost', this.uLost);
   },
 
   unbindChannelEvents: function () {
-    this.channel.unbind('client-opponentClicked', this.bce1);
-    this.channel.unbind('client-uLost', this.bce2);
+    this.channel.unbind('client-opponentClicked', this.opponentClicked);
+    this.channel.unbind('client-uLost', this.uLost);
   },
 
   winTwoPlayerGame: function () {
@@ -113,6 +113,10 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
     this.theirGameView.forceQuit();
     this.unbindChannelEvents();
     this.remove();
+  },
+
+  disableMyBoard: function () {
+    this.myGameView.disable();
   },
 
 });

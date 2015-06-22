@@ -48,6 +48,7 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
 
   activateListeners: function () {
     this.listenTo(this.twoPlayerGameView, 'gameConcluded', function () {
+      this.disableMyBoard();
       this.$el.append($('<div>').addClass('rematch-row row').html(
         $('<button>').addClass('rematch-btn btn btn-primary')
           .addClass('col-md-2 col-md-offset-5').html('Rematch?')
@@ -95,6 +96,10 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
 
     this.oppWantsRematch = false;
     this.iWantRematch = false;
+  },
+
+  disableMyBoard: function () {
+    this.twoPlayerGameView.disableMyBoard();
   },
 
 });

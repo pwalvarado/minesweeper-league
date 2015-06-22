@@ -38,7 +38,7 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
   },
 
   events: {
-    'click .reset': 'reset',
+    'click .reset-btn': 'reset',
     // mousedown prevents conflicts with the 'gameOver' listener.
     'mousedown .cell': 'startTimer'
   },
@@ -110,6 +110,13 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     this.headerView.forceQuit();
     this.boardView.forceQuit();
     this.remove();
+  },
+
+  disable: function () {
+    this.headerView.timer.stop();
+    this.playing = false;
+    this.collection.gameOver = true;
+    this.$el.find('.reset-btn').addClass('disabled');
   },
 
 });
