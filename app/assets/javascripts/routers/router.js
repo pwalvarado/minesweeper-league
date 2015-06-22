@@ -16,12 +16,12 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
     if ($(".main div:contains('Log In')").length) {
       $('.navbar-nav').children().removeClass('active');
       $(".nav > li").has(":contains('Log In')").addClass('active');
-    } else if ($(".main div:contains('Sign Up')")) {
+    } else if ($(".main div:contains('Sign Up')").length) {
       $('.navbar-nav').children().removeClass('active');
       $(".nav > li").has(":contains('Sign Up')").addClass('active');
     } else {
       $('.navbar-nav').children().removeClass('active');
-      $(".nav > li").has("a[href='#']").addClass('active');
+      $(".nav > li").has("a[href='/#']").addClass('active');
     }
 
     this._swapView(mainView);
@@ -44,7 +44,7 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
     });
 
     $('.navbar-nav').children().removeClass('active');
-    $(".nav > li").has("a[href='#two_player_games/new']").addClass('active');
+    $(".nav > li").has("a[href='/#two_player_games/new']").addClass('active');
     this._swapView(twoPlayerView);
   },
 
