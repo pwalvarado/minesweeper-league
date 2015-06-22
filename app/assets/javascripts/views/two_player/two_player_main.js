@@ -45,6 +45,9 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
           .addClass('col-md-2 col-md-offset-5').html('Rematch?')
       ));
     });
+
+    // if I add a listenTo below this check createRematch to make
+    // sure I'm not doubling the listener.
   },
 
   events: {
@@ -53,30 +56,30 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
 
   rematchClicked: function () {
     this.iWantRematch = true;
-    
+
     if (!this.opponentWantsRematch) {
       this.channel.trigger('client-rematchRequested', {});
       this.$el.find('.rematch-btn').addClass('disabled')
         .html('Waiting for opponent...');
     } else {
       this.channel.trigger('client-bothWantRematch', {});
-      this.$el.find('.rematch-btn').remove();
       this.createRematch();
     }
   },
 
   createRematch: function () {
     this.twoPlayerGameView.forceQuit();
+    this.stopListening(this.twoPlayerGameView);
+    this.$el.find('.rematch-btn').remove();
     this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
         gameId: this.gameId,
         pusher: this.pusher, channel:this.channel,
         dimX: 9, dimY: 9, numMines: 10
     });
 
-    this.$el.find('two-player-game-row')
-      .html(this.twoPlayerGameView.render().$el);
+    this.$el.append(this.twoPlayerGameView.render().$el);
+    this.activateListeners();
 
-    // reset the variables
     this.opponentWantsRematch = false;
     this.iWantRematch = false;
   },
