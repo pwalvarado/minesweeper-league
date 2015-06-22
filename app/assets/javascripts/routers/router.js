@@ -44,7 +44,7 @@ MinesweeperLeague.Routers.Router = Backbone.Router.extend({
     });
 
     $('.navbar-nav').children().removeClass('active');
-    $(".nav > li").has("a[href='/#two_player/new']").addClass('active');
+    $(".nav > li.dropdown").addClass('active');
     this._swapView(twoPlayerView);
   },
 
