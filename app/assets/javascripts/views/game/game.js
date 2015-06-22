@@ -14,12 +14,12 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
       this.cellModels, { numMines: this.numMines }
     );
 
-    this.gameHeaderView = new MinesweeperLeague.Views.GameHeader({
+    this.headerView = new MinesweeperLeague.Views.GameHeader({
       collection: this.collection,
       gameView: this,
       numMines: this.numMines
     });
-    this.gameBoardView = new MinesweeperLeague.Views.GameBoard({
+    this.boardView = new MinesweeperLeague.Views.GameBoard({
       collection: this.collection,
       dimX: this.dimX, dimY: this.dimY, numMines: this.numMines
     });
@@ -31,8 +31,8 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
 
   render: function () {
     this.$el.empty();
-    this.$el.append(this.gameHeaderView.render().$el);
-    this.$el.append(this.gameBoardView.render().$el);
+    this.$el.append(this.headerView.render().$el);
+    this.$el.append(this.boardView.render().$el);
 
     return this;
   },
@@ -49,16 +49,21 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     });
     this.collection.reset(this.cellModels);
     this.collection.constantsReset();
+    this.constantsReset();
 
     // Since I'm not changing the collection, I do not need to pass in
     // this.collection. They will be pointing to the new one already
     // since they were initialized pointing at it.
-    this.gameBoardView.reset();
-    this.gameHeaderView.reset();
+    this.boardView.reset();
+    this.headerView.reset();
   },
 
   startTimer: function () {
-    this.gameHeaderView.startTimer();
+    // Only start the timer if the game is not in a playing state.
+    if (this.playing === true) { return; }
+
+    this.playing = true;
+    this.headerView.startTimer();
   },
 
   determineLevel: function () {
@@ -82,14 +87,14 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
 
   activateListeners: function () {
     this.listenTo(this.collection, 'gameOver', function () {
-      this.gameHeaderView.timer.stop();
+      this.headerView.timer.stop();
       this.playing = false;
     });
 
     this.listenTo(this.collection, 'gameWon', function () {
-      this.gameHeaderView.timer.stop();
+      this.headerView.timer.stop();
       // Single Player Main View catches this trigger
-      this.trigger('bestTime', this.gameHeaderView.timer.currentTime(),
+      this.trigger('bestTime', this.headerView.timer.currentTime(),
         this.determineLevel());
 
       // Two Player Main View catches this trigger
@@ -97,9 +102,13 @@ MinesweeperLeague.Views.Game = Backbone.View.extend({
     });
   },
 
+  constantsReset: function () {
+    this.playing = false;
+  },
+
   forceQuit: function () {
-    this.gameHeaderView.forceQuit();
-    this.gameBoardView.forceQuit();
+    this.headerView.forceQuit();
+    this.boardView.forceQuit();
     this.remove();
   },
 

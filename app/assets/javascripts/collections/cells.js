@@ -17,6 +17,7 @@ MinesweeperLeague.Collections.Cells = Backbone.Collection.extend({
   incrementRevealedCells: function () {
     this.revealedCells += 1;
     if (this.revealedCells === this.numSafe && !this.gameOver) {
+      this.gameOver = true;
       this.trigger('gameWon');
     }
   },
