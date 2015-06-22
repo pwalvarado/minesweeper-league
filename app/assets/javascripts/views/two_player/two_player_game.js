@@ -39,44 +39,31 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   },
 
   events: {
-    'click .start-btn': 'waitOrStart',
+    'click .start-btn': 'clickStart',
   },
 
   bindChannelEvents: function () {
-    this.bce1 = function () { this.opponentReady = true; }.bind(this);
-    this.channel.bind('client-oneReady', this.bce1);
-
-    this.bce2 = function () {
+    this.oppReady = function () {
       this.opponentReady = true;
-      this.waitOrStart();
+      if (this.imReady) { this.start(); }
     }.bind(this);
-    this.channel.bind('client-bothReady', this.bce2);
+    this.channel.bind('client-oppReady', this.oppReady);
   },
 
   unbindChannelEvents: function () {
-    this.channel.unbind('client-oneReady', this.bce1);
-    this.channel.unbind('client-bothReady', this.bce2);
+    this.channel.unbind('client-oppReady', this.oppReady);
   },
 
-  waitOrStart: function () {
-    if (this.opponentReady) {
-      if (!this.waiting) {
-        this.channel.trigger('client-bothReady', {});
-      }
-
-      this.twoPlayerPreGameHeaderView.$el.remove();
-
-      this.countdownThenPlay();
-    } else {
-      this.twoPlayerPreGameHeaderView.$el.find('.start-btn')
-        .text('Waiting for opponent...').addClass('disabled');
-
-      this.channel.trigger('client-oneReady', {});
-      this.waiting = true;
-    }
+  clickStart: function () {
+    this.channel.trigger('client-oppReady', {});
+    this.imReady = true;
+    if (this.opponentReady) { this.start(); }
+    this.$el.find('.start-btn')
+      .html('Waiting for opponent...').addClass('disabled');
   },
 
-  countdownThenPlay: function () {
+  start: function () {
+    this.$el.find('.two-player-pre-game-header-row').remove();
     var num = 3;
 
     var countDown = setInterval(function () {
