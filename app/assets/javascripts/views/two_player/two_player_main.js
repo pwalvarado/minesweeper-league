@@ -45,15 +45,6 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
     return this;
   },
 
-  bindChannelEvents: function () {
-    this.channel.bind('client-rematchRequested', function () {
-      this.opponentWantsRematch = true;
-    }.bind(this));
-
-    this.channel.bind('client-bothWantRematch', function () {
-      this.createRematch();
-    }.bind(this));
-  },
 
   activateListeners: function () {
     this.listenTo(this.twoPlayerGameView, 'gameConcluded', function () {
@@ -63,7 +54,7 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
       ));
     });
 
-    // if I add a listenTo below this check createRematch to make
+    // if I add a listenTo below this check rematch to make
     // sure I'm not doubling the listener.
   },
 
@@ -71,20 +62,25 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
     'click .rematch-btn': 'rematchClicked'
   },
 
-  rematchClicked: function () {
-    this.iWantRematch = true;
+  bindChannelEvents: function () {
+    this.channel.bind('client-rematchRequested', function () {
+      this.oppWantsRematch = true;
+      if (this.iWantRematch) { this.rematch(); }
+    }.bind(this));
+  },
 
-    if (!this.opponentWantsRematch) {
-      this.channel.trigger('client-rematchRequested', {});
-      this.$el.find('.rematch-btn').addClass('disabled')
-        .html('Waiting for opponent...');
+  rematchClicked: function () {
+    this.channel.trigger('client-rematchRequested', {});
+    this.iWantRematch = true;
+    if (this.oppWantsRematch) {
+      this.rematch();
     } else {
-      this.channel.trigger('client-bothWantRematch', {});
-      this.createRematch();
+      this.$el.find('.rematch-btn')
+        .html('Waiting for opponent...').addClass('disabled');
     }
   },
 
-  createRematch: function () {
+  rematch: function () {
     this.twoPlayerGameView.forceQuit();
     this.stopListening(this.twoPlayerGameView);
     this.$el.find('.rematch-btn').remove();
@@ -97,7 +93,7 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
     this.$el.append(this.twoPlayerGameView.render().$el);
     this.activateListeners();
 
-    this.opponentWantsRematch = false;
+    this.oppWantsRematch = false;
     this.iWantRematch = false;
   },
 

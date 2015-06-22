@@ -39,7 +39,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
   },
 
   events: {
-    'click .start-btn': 'clickStart',
+    'click .start-btn': 'startClicked',
   },
 
   bindChannelEvents: function () {
@@ -54,12 +54,15 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     this.channel.unbind('client-oppReady', this.oppReady);
   },
 
-  clickStart: function () {
+  startClicked: function () {
     this.channel.trigger('client-oppReady', {});
     this.imReady = true;
-    if (this.opponentReady) { this.start(); }
-    this.$el.find('.start-btn')
-      .html('Waiting for opponent...').addClass('disabled');
+    if (this.opponentReady) {
+      this.start();
+    } else {
+      this.$el.find('.start-btn')
+        .html('Waiting for opponent...').addClass('disabled');
+    }
   },
 
   start: function () {
