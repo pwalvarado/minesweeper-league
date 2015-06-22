@@ -35,7 +35,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
       this.$el.html(this.template());
       this.$el.find('.my-board').append(this.myGameView.render().$el);
       this.$el.find('.opponent-board').append(this.theirGameView.render().$el);
-      this.theirGameView.gameHeaderView.$el
+      this.theirGameView.headerView.$el
         .find('.reset').addClass('disabled');
     }
 
@@ -72,7 +72,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
         cells.push(cell);
       });
 
-      that.theirGameView.gameBoardView =
+      that.theirGameView.boardView =
         new MinesweeperLeague.Views.GameBoard({
           collection:
             new MinesweeperLeague.Collections.Cells(cells, {
@@ -80,8 +80,8 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
             })
         });
       that.theirGameView.render();
-      that.theirGameView.gameBoardView.stopListening();
-      that.theirGameView.gameHeaderView.$el.find('.reset').addClass('disabled');
+      that.theirGameView.boardView.stopListening();
+      that.theirGameView.headerView.$el.find('.reset').addClass('disabled');
     }
     this.channel.bind('client-opponentClicked', this.bce1);
 

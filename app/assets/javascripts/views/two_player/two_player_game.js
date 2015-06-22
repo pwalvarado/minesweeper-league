@@ -21,7 +21,7 @@ MinesweeperLeague.Views.TwoPlayerGame = Backbone.View.extend({
     // Turn off their board's functionality
     this.twoPlayerGameBoardsView.theirGameView.stopListening();
     this.twoPlayerGameBoardsView.theirGameView.undelegateEvents();
-    this.twoPlayerGameBoardsView.theirGameView.gameBoardView.stopListening();
+    this.twoPlayerGameBoardsView.theirGameView.boardView.stopListening();
 
     this.bindChannelEvents();
   },
