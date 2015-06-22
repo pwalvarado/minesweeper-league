@@ -1,15 +1,28 @@
-<h1>Sign Up</h1>
+<div class="main container">
+  <div class="main row">
+    <div class="main col-md-12">
+      <h1>Sign Up</h1>
 
-<form action="<%= users_url %>" method="POST">
-  <%= form_auth_token %>
+      <form action="<%= users_url %>" method="POST">
+        <%= form_auth_token %>
 
-  <label>Username:
-    <input type="text" name="user[username]" value="<%= @user.username %>">
-  </label>
+        <div class="form-group">
+          <label>Username:
+            <input type="text" name="user[username]"
+              class="form-control" placeholder="Password"
+              value="<%= @user.username %>">
+          </label>
+        </div>
 
-  <label>Password:
-    <input type="password" name="user[password]">
-  </label>
+        <div class="form-group">
+          <label>Password:
+            <input type="password" name="user[password]"
+              class="form-control" placeholder="Password">
+          </label>
+        </div>
 
-  <input type="submit" value="Sign Up">
-</form>
+        <input type="submit" value="Sign Up" class="btn btn-default">
+      </form>
+    </div>
+  </div>
+</div>

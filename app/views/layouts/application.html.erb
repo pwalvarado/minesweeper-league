@@ -37,7 +37,7 @@
             <li><%= link_to "Sign Out", session_url, method: :delete %></li>
             <!-- <li><a href="#">Sign Out</a></li> -->
           <% else %>
-            <li><%= link_to "Sign In", new_session_url %></li>
+            <li><%= link_to "Log In", new_session_url %></li>
             <li><%= link_to "Sign Up", new_user_url %></li>
           <% end %>
         </ul>
@@ -45,7 +45,20 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-  <%= flash[:errors].join('<br>').html_safe if flash[:errors] %>
+  <% if flash[:errors] %>
+    <div class="flash-container container">
+      <div class="flash-row row">
+        <div class="flash-col col-md-12">
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <strong>Uh Oh!</strong>
+            <%= flash[:errors].join('<br>').html_safe if flash[:errors] %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
   <%= yield %>
 
