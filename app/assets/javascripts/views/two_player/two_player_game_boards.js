@@ -48,7 +48,7 @@ MinesweeperLeague.Views.TwoPlayerGameBoards = Backbone.View.extend({
 
   cellClicked: function (e) {
     this.channel.trigger('client-opponentClicked', {
-      cellLikeArray: this.myGameView.cells,
+      cellLikeArray: this.myGameView.collection,
     });
   },
 
