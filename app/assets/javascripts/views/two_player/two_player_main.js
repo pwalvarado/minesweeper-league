@@ -8,11 +8,28 @@ MinesweeperLeague.Views.TwoPlayerMain = Backbone.View.extend({
     this.twoPlayerDirectionsView =
       new MinesweeperLeague.Views.TwoPlayerDirections();
 
-    this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
-      gameId: this.gameId,
-      pusher: this.pusher, channel: this.channel,
-      dimX: 9, dimY: 9, numMines: 10
-    });
+    switch (options.difficulty) {
+      case "intermediate":
+        this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
+          gameId: this.gameId,
+          pusher: this.pusher, channel: this.channel,
+          dimX: 16, dimY: 16, numMines: 40
+        });
+        break;
+      case "expert":
+        this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
+          gameId: this.gameId,
+          pusher: this.pusher, channel: this.channel,
+          dimX: 30, dimY: 16, numMines: 99
+        });
+        break;
+      default:
+        this.twoPlayerGameView = new MinesweeperLeague.Views.TwoPlayerGame({
+          gameId: this.gameId,
+          pusher: this.pusher, channel: this.channel,
+          dimX: 9, dimY: 9, numMines: 10
+        });
+    }
 
     this.bindChannelEvents();
     this.activateListeners();
