@@ -13,7 +13,7 @@ Minesweeper League is a website devoted to minesweeper. Users can:
 - [X] Play as guest if they do not have or want an account.
 - [X] Play the original (single player) minesweeper.
 - [X] View and update the single player leaderboards.
-- [ ] Play a 1v1 competitive variant of minesweeper.
+- [X] Play a 1v1 competitive variant of minesweeper.
 
 ## Design Docs
 * [View Wireframes](https://github.com/aegatlin/minesweeper-league/tree/master/docs/views.md)
@@ -83,22 +83,22 @@ Suggestions appreciated. For now, I will guess that it is easier on everything
 server just pass along JSON to the other client.
 
 ## Bonus Features:
+- [X] A rematch button in the competitive variant.
+- [ ] Prevent postman hacks to the leaderboards.
 - [ ] Open matchmaking,like [lichess][lichess].
 - [ ] Profile page with personal best times for single player mode.
-- [ ] A dynamic competitive Minesweeper (CM): the better you do, the harder it
+- [ ] A dynamic competitive Minesweeper: the better you do, the harder it
 gets for your opponent.
 - [ ] A messaging/inbox system for private correspondence between users.
 - [ ] A chat section in the competitive variant.
-- [ ] A rematch button in the competitive variant.
 - [ ] Opt-In email verification (like [lichess][lichess]).
-- [ ] CM vs AI (non-trivial for dynamic boards).
-- [ ] ELO ranking system for CM.
+- [ ] Comptetitive minesweeper vs AI (non-trivial for dynamic boards).
+- [ ] ELO ranking system for Competitive Minesweeper.
 - [ ] Customizability options for all variants.
 - [ ] Never-ending board variant.
 - [ ] Never Guess variant (you can't lose if you play perfectly).
 - [ ] Game history for all variants.
 - [ ] Friends. Follow, Unfollow.
-- [ ] Prevent post hacks to the server.
 - [ ] Implement minesweeper bot detection.
 - [ ] Leaderboard for the latest X# games in that 1P difficulty.
 
